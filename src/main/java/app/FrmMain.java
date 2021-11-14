@@ -1,0 +1,175 @@
+package app;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
+
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
+import dao.BangDiaDao;
+import dao.KhachHangDao;
+import dao.NhanVienDao;
+import dao.PhieuThueDao;
+import service.BangDiaServices;
+import service.KhachHangServices;
+import service.NhanVienServices;
+import service.PhieuThueServices;
+
+public class FrmMain extends JFrame implements ActionListener{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+		JLabel lblTitle ;
+		JButton btnQLNV, btnQLKH, btnQLPDK, btnQLBD,btnThoat,btnBaoCao;
+		
+	public static EntityManagerFactory factory = Persistence.createEntityManagerFactory("QLBangDia");
+	public static BangDiaServices bangDiaDao = new BangDiaDao(factory);
+	public static NhanVienServices nhanVienDao = new NhanVienDao(factory);
+	public static KhachHangServices khachHangDao = new KhachHangDao(factory);
+	public static PhieuThueServices phieuThueDao = new PhieuThueDao(factory);
+		
+	public FrmMain() {
+		// TODO Auto-generated constructor stub
+		setTitle("CHƯƠNG TRÌNH QUẢN LÝ BĂNG ĐĨA");
+		setSize(500,400);
+		setLocationRelativeTo(null);
+		setResizable(false);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		addWindowListener(new java.awt.event.WindowAdapter() {
+		    @Override
+		    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+		    	factory.close();
+		    }
+		});
+		
+		buildUI();
+		
+	}
+	private void buildUI() {
+		JPanel pNorth = new JPanel();
+		JLabel lblTitle;
+		pNorth.add(lblTitle = new JLabel("HỆ THỐNG BĂNG ĐĨA BUSAN"));
+		pNorth.setBorder(BorderFactory.createTitledBorder(" "));
+		//set Font-text
+		Font fpNorth = new Font("Time New Roman" , Font.BOLD , 30);
+		lblTitle.setFont(fpNorth);
+		pNorth.setBackground(Color.CYAN);
+		add(pNorth, BorderLayout.NORTH);
+		
+		JPanel pCen = new JPanel(); 
+		pCen.setBackground(Color.WHITE);
+		pCen.setBorder(BorderFactory.createTitledBorder(" "));
+		Box b , b1,b2, b3,b4 ,b5, b6;
+		b = Box.createVerticalBox();
+		
+		b.add(Box.createVerticalStrut(10));
+		b.add(b1 = Box.createHorizontalBox());
+		b.add(Box.createVerticalStrut(10));
+		b.add(b2 = Box.createHorizontalBox());
+		b.add(Box.createVerticalStrut(10));
+		b.add(b3 = Box.createHorizontalBox());
+		b.add(Box.createVerticalStrut(10));
+		b.add(b4 = Box.createHorizontalBox());
+		b.add(Box.createVerticalStrut(10));
+		b.add(b5 = Box.createHorizontalBox());
+		b.add(Box.createVerticalStrut(10));
+		b.add(b6 = Box.createHorizontalBox());
+		b.add(Box.createVerticalStrut(10));
+		pCen.add(b);
+		add(pCen, BorderLayout.CENTER);
+		
+		b1.add(btnQLNV = new JButton("Quản lý nhân viên"));
+		b1.add(Box.createVerticalStrut(25));
+		
+		b2.add(btnQLKH = new JButton("Quản lý khách hàng"));
+		b2.add(Box.createVerticalStrut(25));
+	
+		b3.add(btnQLBD = new JButton("Quản lý băng đĩa"));
+		b3.add(Box.createVerticalStrut(25));
+		
+		b4.add(btnQLPDK = new JButton("Quản lý phiếu đăng ký thuê"));
+		b4.add(Box.createVerticalStrut(25));
+		btnQLPDK.setSize(150, 20);
+		b5.add(btnBaoCao = new JButton("Thống kê Tổng hợp Băng Đĩa"));
+		b5.add(Box.createVerticalStrut(25));
+		
+		b6.add(btnThoat = new JButton("Thoát chương trình"));
+		b6.add(Box.createVerticalStrut(25));
+		
+		btnQLBD.setPreferredSize(btnBaoCao.getPreferredSize());
+		btnQLKH.setPreferredSize(btnBaoCao.getPreferredSize());
+		btnQLNV.setPreferredSize(btnBaoCao.getPreferredSize());
+		btnThoat.setPreferredSize(btnBaoCao.getPreferredSize());
+		btnQLPDK.setPreferredSize(btnBaoCao.getPreferredSize());
+		
+		btnQLBD.addActionListener(this);
+		btnQLKH.addActionListener(this);
+		btnQLNV.addActionListener(this);
+		btnQLPDK.addActionListener(this);
+		btnThoat.addActionListener(this);
+		btnBaoCao.addActionListener(this);
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		Object o = e.getSource();
+		if (o.equals(btnQLNV)) {
+					try {
+						new FrmNhanVien().setVisible(true);
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					};
+			
+		}
+		if (o.equals(btnQLPDK)) {
+			new FrmPhieuThue().setVisible(true);
+		}
+		if (o.equals(btnQLBD)) {
+			try {
+				new FrmBangDia().setVisible(true);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+		if (o.equals(btnQLKH)) {
+			try {
+				new FrmKhachHang().setVisible(true);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+		if (o.equals(btnBaoCao)) {
+		
+				new FrmThongKe().setVisible(true);
+			
+		}
+		if (o.equals(btnThoat)) {
+			int out = JOptionPane.showConfirmDialog(null,"Muốn thoát?","WARNING",JOptionPane.YES_NO_OPTION);
+			if (out == JOptionPane.YES_OPTION) {
+				System.exit(0);
+			}
+		}
+	}
+	public static void main(String[] args) {
+		new FrmMain().setVisible(true);
+
+	}
+
+}
