@@ -265,7 +265,6 @@ public class FrmKhachHang extends JFrame implements ActionListener, MouseListene
 	}
 	
 	public void mouseClicked(MouseEvent e) {
-		//		// TODO Auto-generated method stub
 		int row = table.getSelectedRow();
 		txtHoTen.setText(table.getValueAt(row, 0).toString());
 		txtGioiTinh.setText(table.getValueAt(row, 1).toString());

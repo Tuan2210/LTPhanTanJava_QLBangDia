@@ -65,10 +65,4 @@ public class NhanVien implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
-	@Override
-	public String toString() {
-		return "NhanVien [maNV=" + maNV + ", tenNV=" + tenNV + ", dienThoai=" + dienThoai + ", moTa=" + moTa + "]";
-	}
-	
 }
