@@ -1,11 +1,5 @@
-<<<<<<< Updated upstream
-/app/
-/entity/
-/dao/
-=======
 /META-INF/
 /app/
 /dao/
 /entity/
->>>>>>> Stashed changes
 /service/
