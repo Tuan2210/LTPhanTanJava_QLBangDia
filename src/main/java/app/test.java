@@ -31,6 +31,12 @@ public class test {
 			System.out.println(nh.getMaNV() + nh.getTenNV() + nh.getDienThoai() + nh.getMoTa());
 		}
 		
+		List<BangDia> l = dao.findBangDia("T6");
+		
+		for(BangDia d : l) {
+			System.out.println(d.getMaBD() + d.getTenBD());
+		}
+		
 //		dao.add(b);
 //		
 //		List<BangDia> list = dao.query();

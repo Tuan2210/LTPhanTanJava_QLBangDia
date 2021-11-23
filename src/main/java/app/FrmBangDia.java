@@ -20,8 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /*
- *Ngư�?i viết: �?inh Quang Tuấn - MSSV: 19468641 - Nhóm 13
- *Ngày viết: 11/5/2021 
+ *NgÆ°ï¿½?i viáº¿t: ï¿½?inh Quang Tuáº¥n - MSSV: 19468641 - NhĂ³m 13
+ *NgĂ y viáº¿t: 11/5/2021 
  * */
 
 public class FrmBangDia extends JFrame implements ActionListener, MouseListener {
@@ -54,7 +54,7 @@ public class FrmBangDia extends JFrame implements ActionListener, MouseListener 
 	}
 
 	public FrmBangDia(){
-		super("Thông tin CD");
+		super("THÔNG TIN CD");
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setSize(1120, 650);
 		setLocationRelativeTo(null);
@@ -75,12 +75,12 @@ public class FrmBangDia extends JFrame implements ActionListener, MouseListener 
 		pNorth.add(lbltITitle);
 		contentPane.add(pNorth, BorderLayout.NORTH);
 		////////////////////////////////////////////////////
-		split1=new JSplitPane(JSplitPane.VERTICAL_SPLIT);			//chia đôi vùng center chính
+		split1=new JSplitPane(JSplitPane.VERTICAL_SPLIT);			//chia Ä‘Ă´i vĂ¹ng center chĂ­nh
 		split1.setPreferredSize(new Dimension(900, 600));
 
-		JPanel pTop=new JPanel(new BorderLayout());								//top nh�?
+		JPanel pTop=new JPanel(new BorderLayout());								//top nhï¿½?
 		borderVien=BorderFactory.createLineBorder(Color.ORANGE);
-		split2=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);			// chia đôi vùng tt chi tiết
+		split2=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);			// chia Ä‘Ă´i vĂ¹ng tt chi tiáº¿t
 		split2.setPreferredSize(new Dimension(15, 3));
 		//split2.setPreferredSize(new Dimension(15, 5));
 		pTop.setBorder(BorderFactory.createTitledBorder(borderVien, "THÔNG TIN CHI TIẾT"));
@@ -102,28 +102,28 @@ public class FrmBangDia extends JFrame implements ActionListener, MouseListener 
 		b8=Box.createHorizontalBox();
 		b9=Box.createHorizontalBox();
 
-		JLabel lblMa=new JLabel("Mã băng đĩa:");			//mã
+		JLabel lblMa=new JLabel("Mã băng đĩa: ");			//mĂ£
 		b1.add(lblMa);
 		b1.add(Box.createHorizontalStrut(16));
 		b1.add(txtMa=new JTextField(10));
 		b1.add(Box.createHorizontalStrut(5));
 		bA.add(b1);
 		bA.add(Box.createVerticalStrut(10));
-		JLabel lblTen=new JLabel("Tên băng đĩa:");			//tên
+		JLabel lblTen=new JLabel("Tên băng đĩa: ");			//tĂªn
 		b2.add(lblTen);
 		b2.add(Box.createHorizontalStrut(12));
 		b2.add(txtTen=new JTextField(15));
 		b2.add(Box.createHorizontalStrut(5));
 		bA.add(b2);
 		bA.add(Box.createVerticalStrut(10));
-		JLabel lblTheLoai=new JLabel("Thể loại:");			//thể loại
+		JLabel lblTheLoai=new JLabel("Thể loại: ");			//thá»ƒ loáº¡i
 		b3.add(lblTheLoai);
 		b3.add(Box.createHorizontalStrut(40));
 		b3.add(txtTheLoai=new JTextField(15));
 		b3.add(Box.createHorizontalStrut(5));
 		bA.add(b3);
 		bA.add(Box.createVerticalStrut(10));
-		JLabel lblTinhTrang=new JLabel("Tình trạng:");		//tình trạng
+		JLabel lblTinhTrang=new JLabel("Tình trạng: ");		//tĂ¬nh tráº¡ng
 		b4.add(lblTinhTrang);
 		b4.add(Box.createHorizontalStrut(27));
 		b4.add(txtTinhTrang=new JTextField(15));
@@ -131,14 +131,14 @@ public class FrmBangDia extends JFrame implements ActionListener, MouseListener 
 		bA.add(b4);
 		bA.add(Box.createVerticalStrut(10));
 		////
-		JLabel lblSoLuong=new JLabel("Số lượng:");			//số lượng
+		JLabel lblSoLuong=new JLabel("Số lượng: ");			//sá»‘ lÆ°á»£ng
 		b5.add(lblSoLuong);
 		b5.add(Box.createHorizontalStrut(76));
 		b5.add(txtSoLuong=new JTextField(30));
 		b5.add(Box.createHorizontalStrut(5));
 		bB.add(b5);
 		bB.add(Box.createVerticalStrut(10));
-		JLabel lblSoNgayMuon=new JLabel("Số ngày được mượn:"); //số ngày đc mượn
+		JLabel lblSoNgayMuon=new JLabel("Số ngày mượn: "); //sá»‘ ngĂ y Ä‘c mÆ°á»£n
 		//lblSoNgayMuon.setPreferredSize(new Dimension(40, 25));
 		b6.add(lblSoNgayMuon);
 		b6.add(Box.createHorizontalStrut(10));
@@ -146,14 +146,14 @@ public class FrmBangDia extends JFrame implements ActionListener, MouseListener 
 		b6.add(Box.createHorizontalStrut(5));
 		bB.add(b6);
 		bB.add(Box.createVerticalStrut(10));
-		JLabel lblDonGia=new JLabel("�?ơn giá:");			//đơn giá
+		JLabel lblDonGia=new JLabel("Đơn giá: ");			//Ä‘Æ¡n giĂ¡
 		b7.add(lblDonGia);
 		b7.add(Box.createHorizontalStrut(84));
 		b7.add(txtDonGia=new JTextField(10));
 		b7.add(Box.createHorizontalStrut(5));
 		bB.add(b7);
 		bB.add(Box.createVerticalStrut(10));
-		JLabel lblHangSX=new JLabel("Hãng sản xuất:");		//hãng
+		JLabel lblHangSX=new JLabel("Hãng sản xuất: ");		//hĂ£ng
 		b8.add(lblHangSX);
 		b8.add(Box.createHorizontalStrut(48));
 		b8.add(txtHangSX=new JTextField(15));
@@ -161,7 +161,7 @@ public class FrmBangDia extends JFrame implements ActionListener, MouseListener 
 		bB.add(b8);
 		bB.add(Box.createVerticalStrut(10));
 
-		JLabel lblGhiChu=new JLabel("Ghi chú:");			//ghi chú
+		JLabel lblGhiChu=new JLabel("Ghi chú: ");			//ghi chĂº
 		b9.add(lblGhiChu);
 		b9.add(Box.createHorizontalStrut(43));
 		b9.add(txtGhiChu=new JTextArea());
@@ -197,9 +197,9 @@ public class FrmBangDia extends JFrame implements ActionListener, MouseListener 
 		JPanel pBottomRight=new JPanel();
 		JPanel pL=new JPanel();
 		JPanel pR=new JPanel();
-		pBottom.setBorder(BorderFactory.createTitledBorder("CHỌN T�?C VỤ:"));
+		pBottom.setBorder(BorderFactory.createTitledBorder("CHỌN TÍNH NĂNG:"));
 
-		JLabel lblTim=new JLabel("Nhập mã băng đĩa cần tìm:");
+		JLabel lblTim=new JLabel("Nhập tên băng đĩa cần tìm:");
 		pBottomLeft.add(lblTim);
 		pBottomLeft.add(txtTim=new JTextField(15));
 		pL.add(btnTim=new JButton("Tìm kiếm"));
@@ -211,7 +211,7 @@ public class FrmBangDia extends JFrame implements ActionListener, MouseListener 
 		pR.add(btnXoa=new JButton("Xóa"));
 		pR.add(btnXoaTrang=new JButton("Xóa trắng"));
 		pR.add(btnCapNhat=new JButton("Cập nhật"));
-		pR.add(btnLuu=new JButton("Lưu"));
+		pR.add(btnLuu=new JButton("Lấy dữ liệu"));
 		pR.setBackground(new Color(152, 251, 152));
 		pBottomRight.setBorder(BorderFactory.createEtchedBorder());
 		pBottomRight.add(pR);
@@ -224,7 +224,7 @@ public class FrmBangDia extends JFrame implements ActionListener, MouseListener 
 		contentPane.add(split1, BorderLayout.CENTER);
 		////////////////////////////////////////////////
 		////////////////////////////////////////////////
-		JPanel pSouth = new JPanel(new BorderLayout());						//bottom nh�? pSouth
+		JPanel pSouth = new JPanel(new BorderLayout());						//bottom nhï¿½? pSouth
 		pSouth.setPreferredSize(new Dimension(0, 40));
 
 		//		listBD=new QLBangDia();
@@ -234,7 +234,7 @@ public class FrmBangDia extends JFrame implements ActionListener, MouseListener 
 		//		listData = new Database().getAllFromSQL();
 
 
-		String []tenCot = {"Mã băng đĩa","Tên băng đĩa","Thể loại","Tình trạng","Số lượng","Số ngày được mượn","�?ơn giá","Hãng sản xuất","Ghi chú"};
+		String []tenCot = {"Mã băng đĩa","Tên băng đĩa","Thể loại","Tình trạng","Số lượng","Số ngày mượn","Đơn giá","Hãng sản xuất","Ghi chú"};
 		tableModelBD = new DefaultTableModel(tenCot, 0);
 		tableBD = new JTable(tableModelBD);
 		tableBD.setPreferredSize(new Dimension(680, 250));
@@ -257,7 +257,7 @@ public class FrmBangDia extends JFrame implements ActionListener, MouseListener 
 		//tableBD = db.getAllFromSQL();
 		//}catch (Exception e) {
 		// TODO: handle exception
-		//JOptionPane.showMessageDialog(null, "Không hiện dữ liệu lên bảng ");
+		//JOptionPane.showMessageDialog(null, "KhĂ´ng hiá»‡n dá»¯ liá»‡u lĂªn báº£ng ");
 		//}
 		//((DefaultTableModel) tableBD.getModel()).setDataVector(data, tenCot);;
 		//		tableModel = (DefaultTableModel) tableBD.getModel();
@@ -265,12 +265,11 @@ public class FrmBangDia extends JFrame implements ActionListener, MouseListener 
 		//		try {
 		//			dsBD = (QLBangDia) l.loadFile("data/BangDia.txt");
 		//		}catch(Exception e) {
-		//			JOptionPane.showMessageDialog(null, "Không tìm thấy file");
+		//			JOptionPane.showMessageDialog(null, "KhĂ´ng tĂ¬m tháº¥y file");
 		//		}
 
 		//		LayDuLieuTuSQLChoModel();
-
-		xoaTrang();
+		
 		btnThem.addActionListener(this);
 		btnXoa.addActionListener(this);
 		btnXoaTrang.addActionListener(this);
@@ -299,17 +298,13 @@ public class FrmBangDia extends JFrame implements ActionListener, MouseListener 
 	//	private void LayDuLieuTuSQLChoModel() {
 	//		for(BangDia bd : listData) {
 	//			tableModelBD.addRow(new Object[] {
-	//					//i++,  // là số thứ tự của table
+	//					//i++,  // lĂ  sá»‘ thá»© tá»± cá»§a table
 	//					bd.getMaBD(), bd.getTenBD(), bd.getTheLoai(),
 	//					bd.getTinhTrang(), bd.getSoLuong(), bd.getSoNgayMuon(),
 	//					bd.getDonGia(), bd.getHangSX(), bd.getGhiChu()
 	//			});
 	//		}
 	//	}
-	private void XoaHetDuLieuTableModel(DefaultTableModel tableModelBD2) {
-		DefaultTableModel dtm = (DefaultTableModel) tableBD.getModel();
-		dtm.getDataVector().removeAllElements();
-	}
 
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -330,45 +325,67 @@ public class FrmBangDia extends JFrame implements ActionListener, MouseListener 
 		//		double donGia = Double.parseDouble(dg);
 
 //		int ma = Integer.parseInt(txtMa.getText());
-		String ten = txtTen.getText();
-		String theLoai = txtTheLoai.getText();
-		String tinhTrang = txtTinhTrang.getText();
-		int soLuong = Integer.parseInt(txtSoLuong.getText());
-		int soNgayMuon = Integer.parseInt(txtSoNgayMuon.getText());
-		double donGia = Double.parseDouble(txtDonGia.getText());
-		String hangSX = txtHangSX.getText();
-		String ghiChu = txtGhiChu.getText();
-		BangDia bd=new BangDia(ten, theLoai, tinhTrang, soLuong, soNgayMuon, donGia, hangSX, ghiChu);
+
 		if(o.equals(btnThem)) {
+			String ten = txtTen.getText();
+			String theLoai = txtTheLoai.getText();
+			String tinhTrang = txtTinhTrang.getText();
+			int soLuong = Integer.parseInt(txtSoLuong.getText());
+			int soNgayMuon = Integer.parseInt(txtSoNgayMuon.getText());
+			double donGia = Double.parseDouble(txtDonGia.getText());
+			String hangSX = txtHangSX.getText();
+			String ghiChu = txtGhiChu.getText();
+			BangDia bd=new BangDia(ten, theLoai, tinhTrang, soLuong, soNgayMuon, donGia, hangSX, ghiChu);
+			
 			FrmMain.bangDiaDao.add(bd);
 			tableModelBD.addRow(new Object[] {bd.getMaBD(), bd.getTenBD(), bd.getTheLoai(), bd.getTinhTrang(), bd.getSoLuong(), bd.getSoNgayMuon(), bd.getDonGia(), bd.getHangSX(), bd.getGhiChu()});
 		}
 
 		if(o.equals(btnXoa)) {
-
+			int ma = Integer.parseInt(txtMa.getText());
+			FrmMain.bangDiaDao.removeBangDia(ma);
+			tableModelBD.setRowCount(0);
+			DocDuLieuVaoTableBangDia();
 		}
 		if(o.equals(btnXoaTrang)) {
 			xoaTrang();
 		}
 		if(o.equals(btnLuu)) {		
-
+			tableModelBD.setRowCount(0);
+			DocDuLieuVaoTableBangDia();
 		}
 		if(o.equals(btnTim)) {
-			String pos=txtTim.getText();
+			String pos = txtTim.getText();
 			if(pos != null && pos.trim().length()>0) {
-
-			}else {
-				XoaHetDuLieuTableModel(tableModel);
-				//				LayDuLieuTuSQLChoModel();
+				List<BangDia> list = FrmMain.bangDiaDao.findBangDia(pos);
+				tableModelBD.setRowCount(0);
+				for(BangDia d : list) {
+					tableModelBD.addRow(new Object[] {d.getMaBD(), d.getTenBD(), d.getTheLoai(), d.getTinhTrang(), d.getSoLuong(), d.getSoNgayMuon(), d.getDonGia(), d.getHangSX(), d.getGhiChu()});
+				}
+				
+			} else {
+				tableModelBD.setRowCount(0);
 			}
 		}
 		if(o.equals(btnCapNhat)) {
-
+			int maCapNhat = Integer.parseInt(txtMa.getText());
+			String tenCapNhat = txtTen.getText();
+			String theLoaiCapNhat = txtTheLoai.getText();
+			String tinhTrangCapNhat = txtTinhTrang.getText();
+			int soLuongCapNhat = Integer.parseInt(txtSoLuong.getText());
+			int soNgayMuonCapNhat = Integer.parseInt(txtSoNgayMuon.getText());
+			double donGiaCapNhat = Double.parseDouble(txtDonGia.getText());
+			String hangSXCapNhat = txtHangSX.getText();
+			String ghiChuCapNhat = txtGhiChu.getText();
+			BangDia bdCapNhat = new BangDia(maCapNhat, tenCapNhat, theLoaiCapNhat, tinhTrangCapNhat, soLuongCapNhat, soNgayMuonCapNhat, donGiaCapNhat, hangSXCapNhat, ghiChuCapNhat);
+			
+			FrmMain.bangDiaDao.updateBangDia(bdCapNhat);
+			tableModelBD.setRowCount(0);
+			DocDuLieuVaoTableBangDia();
 		}
 	}
 
 	private BangDia revertFromTextField() {
-		// TODO Auto-generated method stub
 		int MaBD = Integer.parseInt(txtMa.getText());
 		String TenBD = txtTen.getText().trim();
 		String TheLoai	= txtTheLoai.getText().trim();
@@ -402,7 +419,7 @@ public class FrmBangDia extends JFrame implements ActionListener, MouseListener 
 	//		XoaHetDuLieuTableModel(tableModelBD);
 	//		for(BangDia bd : list) {
 	//			tableModelBD.addRow(new Object[] {
-	//					//i++,  // là số thứ tự của table
+	//					//i++,  // lĂ  sá»‘ thá»© tá»± cá»§a table
 	//					bd.getMaBD(), bd.getTenBD(), bd.getTheLoai(),
 	//					bd.getTinhTrang(), bd.getSoLuong(), bd.getSoNgayMuon(),
 	//					bd.getDonGia(), bd.getHangSX(), bd.getGhiChu()

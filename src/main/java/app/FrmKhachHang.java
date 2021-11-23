@@ -201,14 +201,14 @@ public class FrmKhachHang extends JFrame implements ActionListener, MouseListene
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		Object o = e.getSource();
-		String hoten = txtHoTen.getText();
-		String gioitinh = txtGioiTinh.getText();
-		String dienthoai = txtDienThoai.getText();
-		String diachi = txtDiaChi.getText();
-		int socmnd = Integer.parseInt(txtSoCMND.getText());
-		KhachHang kh = new KhachHang(hoten, gioitinh, dienthoai, diachi, socmnd);
-		
+
 		if(o.equals(btnThem)) {
+			String hoten = txtHoTen.getText();
+			String gioitinh = txtGioiTinh.getText();
+			String dienthoai = txtDienThoai.getText();
+			String diachi = txtDiaChi.getText();
+			int socmnd = Integer.parseInt(txtSoCMND.getText());
+			KhachHang kh = new KhachHang(hoten, gioitinh, dienthoai, diachi, socmnd);
 			FrmMain.khachHangDao.add(kh);
 			
 			tableModel.addRow(new Object[] {
@@ -218,9 +218,12 @@ public class FrmKhachHang extends JFrame implements ActionListener, MouseListene
 		if(o.equals(btnXoa)) {
 			if (table.getSelectedRow() != -1) {
 				int index = table.getSelectedRow();
+				int socmnd = Integer.parseInt(txtSoCMND.getText());
 				int del = JOptionPane.showConfirmDialog(null, "Bạn muốn xóa?", "THÔNG BÁO", JOptionPane.YES_NO_OPTION);
 				if(del==JOptionPane.YES_OPTION) {
-					
+					FrmMain.khachHangDao.removeKhachHang(socmnd);
+					tableModel.setRowCount(0);
+					DocDuLieuVaoTableKhachHang();
 				}
 			
 			}
@@ -229,15 +232,22 @@ public class FrmKhachHang extends JFrame implements ActionListener, MouseListene
 			xoaRong();
 		}
 		if(o.equals(btnLuu)) {		
-
+			
 		}
 		if(o.equals(btnTim)) {
-			String pos=txtNhap.getText();
-			if(pos != null && pos.trim().length()>0) {
-
-			}else {
-				XoaHetDuLieuTableModel(tableModel);
-//				LayDuLieuTuSQLChoModel();
+			if(txtNhap.getText() == null) {
+				tableModel.setRowCount(0);
+			}
+			else if (txtNhap.getText() != null) {
+				int pos = Integer.parseInt(txtNhap.getText());
+				tableModel.setRowCount(0);
+				List<KhachHang> listKH = FrmMain.khachHangDao.findKhachHang(pos);
+				
+				for(KhachHang h : listKH) {
+					tableModel.addRow(new Object[] {
+							h.getHoTen(), h.getGioiTinh(), h.getDienThoai(), h.getDiaChi(), h.getSoCMND()
+					});
+				}
 			}
 		}
 	}
@@ -265,7 +275,6 @@ public class FrmKhachHang extends JFrame implements ActionListener, MouseListene
 	}
 	
 	public void mouseClicked(MouseEvent e) {
-		//		// TODO Auto-generated method stub
 		int row = table.getSelectedRow();
 		txtHoTen.setText(table.getValueAt(row, 0).toString());
 		txtGioiTinh.setText(table.getValueAt(row, 1).toString());
