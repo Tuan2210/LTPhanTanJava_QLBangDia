@@ -73,4 +73,8 @@ public class BangDiaDao extends AbstractDao implements BangDiaServices {
 		
 		return b;
 	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> a0b97d703cb4e06aef4a38001f28fa3283ab80d2

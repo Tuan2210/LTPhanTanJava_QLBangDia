@@ -351,7 +351,10 @@ public class FrmBangDia extends JFrame implements ActionListener, MouseListener 
 			xoaTrang();
 		}
 		if(o.equals(btnLuu)) {		
+<<<<<<< HEAD
 			tableModelBD.setRowCount(0);
+=======
+>>>>>>> a0b97d703cb4e06aef4a38001f28fa3283ab80d2
 			DocDuLieuVaoTableBangDia();
 		}
 		if(o.equals(btnTim)) {
