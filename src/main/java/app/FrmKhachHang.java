@@ -233,6 +233,7 @@ public class FrmKhachHang extends JFrame implements ActionListener, MouseListene
 		}
 		if(o.equals(btnLuu)) {		
 			
+<<<<<<< HEAD
 		}
 		if(o.equals(btnSua)) {
 			String hoten = txtHoTen.getText();
@@ -245,6 +246,8 @@ public class FrmKhachHang extends JFrame implements ActionListener, MouseListene
 			FrmMain.khachHangDao.updateKhachHang(khUpdate);
 			tableModel.setRowCount(0);
 			DocDuLieuVaoTableKhachHang();
+=======
+>>>>>>> 82af7f23d77324cfbff68462e799a0589b5f1231
 		}
 		if(o.equals(btnTim)) {
 			if(txtNhap.getText() == null) {

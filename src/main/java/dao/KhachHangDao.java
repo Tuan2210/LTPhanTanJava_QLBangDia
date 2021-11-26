@@ -73,6 +73,7 @@ public class KhachHangDao extends AbstractDao implements KhachHangServices {
 		
 		return l;
 	}
+<<<<<<< HEAD
 
 	@Override
 	public KhachHang getKhachHangByID(int cmnd) {
@@ -82,5 +83,7 @@ public class KhachHangDao extends AbstractDao implements KhachHangServices {
 		
 		return n;
 	}
+=======
+>>>>>>> 82af7f23d77324cfbff68462e799a0589b5f1231
 
 }

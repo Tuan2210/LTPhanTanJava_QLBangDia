@@ -37,7 +37,10 @@ public class test {
 			System.out.println(d.getMaBD() + d.getTenBD());
 		}
 		
+<<<<<<< HEAD
 		n.updateNhanVien(3, "DT3", "DT3", "DT3");
+=======
+>>>>>>> 82af7f23d77324cfbff68462e799a0589b5f1231
 //		dao.add(b);
 //		
 //		List<BangDia> list = dao.query();
