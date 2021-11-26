@@ -37,4 +37,40 @@ public class BangDiaDao extends AbstractDao implements BangDiaServices {
 		
 		return list;
 	}
+	
+	@Override 
+	public void removeBangDia(int id) {
+		try {
+			em.getTransaction().begin();
+			BangDia reference = em.getReference(BangDia.class, id);
+			em.remove(reference);
+			em.getTransaction().commit(); 
+		} catch(Exception e) {
+			e.printStackTrace();
+			em.getTransaction().rollback();
+		}
+	}
+	
+	@Override
+	public void updateBangDia(BangDia b) {
+		try {
+			em.getTransaction().begin();
+			em.merge(b);
+			em.getTransaction().commit();
+		} catch(Exception e) {
+			e.printStackTrace();
+			em.getTransaction().rollback();
+		}
+	}
+	
+	@Override
+	public List<BangDia> findBangDia(String ten) {
+		em.getTransaction().begin();
+		String statement = "SELECT * FROM BangDia WHERE tenBD LIKE " +  "'%" + ten + "%'"  ;
+		Query query = em.createNativeQuery(statement, BangDia.class);
+		List<BangDia> b = query.getResultList();
+		em.getTransaction().commit();
+		
+		return b;
+	}
 }

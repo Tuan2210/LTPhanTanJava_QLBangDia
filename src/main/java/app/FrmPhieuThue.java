@@ -12,7 +12,9 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -52,6 +54,7 @@ public class FrmPhieuThue extends JFrame implements ActionListener {
 	private JTextField txtSoPhieu, txtNgayThue, txtmaThe, txtmaBang , txtTenBang , txtTheLoai,txtTinhTrang , txtslDia , txtSoNgaymuon , txtdonGia, txtTim,txtMessage;
 	private JTable table1;
 	private JComboBox cbCMND, cbTenBang, cbMaNV;
+	private DefaultTableModel tableModel;
 //	private ListPhieuThue listPhieu ;
 //	private PhieuThueTableModel tableModel;
 	private JButton btnBaoCao,btnThem , btnXoa , btnSua , btnTim , btnLuu, btnXoaTrang ;
@@ -172,8 +175,17 @@ public class FrmPhieuThue extends JFrame implements ActionListener {
 		b7.add(new JScrollPane(table1 = new JTable()));
 		table1.setRowHeight(25);
 		
+		String tenCot[] = {"Số phiếu", "Số CMND", "Tên băng đĩa", "Ngày thuê", "Số ngày mượn", "Số lượng", "Đơn giá", "Tình trạng"};
+		tableModel = new DefaultTableModel(tenCot, 0);
+		table1 = new JTable(tableModel);
+		DocDuLieuVaoTablePhieuThue();
+		
 		b.add(b6= Box.createHorizontalBox());
 		b.add(Box.createHorizontalStrut(600));
+		
+		b6.add(new JScrollPane(table1));
+		table1.setRowHeight(20);
+		
 		pCen.add(b);
 		add(pCen, BorderLayout.CENTER);
 		lblmaThe.setPreferredSize(new Dimension(100, 10));
@@ -216,14 +228,14 @@ public class FrmPhieuThue extends JFrame implements ActionListener {
 //		}
 //		updatetableData();
 		
-		table1.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-			
-			public void valueChanged(ListSelectionEvent e) {
-				// TODO Auto-generated method stub
-				int row = table1.getSelectedRow();
-				fillForm(row);
-			}
-		});
+//		table1.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+//			
+//			public void valueChanged(ListSelectionEvent e) {
+//				// TODO Auto-generated method stub
+//				int row = table1.getSelectedRow();
+//				fillForm(row);
+//			}
+//		});
 		
 		btnBaoCao.addActionListener(this);
 		btnLuu.addActionListener(this);
@@ -234,6 +246,7 @@ public class FrmPhieuThue extends JFrame implements ActionListener {
 		btnXoaTrang.addActionListener(this);
 		
 	}
+
 	protected void fillForm(int row) {
 		// TODO Auto-generated method stub
 		if (row != -1) {
@@ -289,7 +302,29 @@ public class FrmPhieuThue extends JFrame implements ActionListener {
 		if (o.equals(btnThem)) {
 			if (validData()) {
 //				PhieuThue c = revertFromTextfield();
-
+//				private JTextField txtSoPhieu, txtNgayThue, txtmaThe, txtmaBang , txtTenBang , txtTheLoai,txtTinhTrang , txtslDia , txtSoNgaymuon , txtdonGia, txtTim,txtMessage;
+//				private JTable table1;
+//				private JComboBox cbCMND, cbTenBang, cbMaNV;
+				int soPhieu = Integer.parseInt(txtSoPhieu.getText());
+				String cmnd = cbCMND.getSelectedItem().toString();
+				int cmndKH = Integer.parseInt(cmnd);
+				String tenBang = cbTenBang.getSelectedItem().toString();
+				String nvID = cbMaNV.getSelectedItem().toString();
+				int maNV = Integer.parseInt(nvID);
+				int soNgayMuon = Integer.parseInt(txtSoNgaymuon.getText());
+				String ngayThue = txtNgayThue.getText().toString().trim();
+				int soLuong = Integer.parseInt(txtslDia.getText());
+				double donGia = Double.parseDouble(txtdonGia.getText());
+				
+				List<BangDia> b = FrmMain.bangDiaDao.findBangDia(tenBang);
+				NhanVien n = FrmMain.nhanVienDao.getNhanVienByID(maNV);
+				KhachHang k = FrmMain.khachHangDao.getKhachHangByID(cmndKH);
+				
+				Set<BangDia> setBangDia = new HashSet<>(b);
+				
+				PhieuThue pt = new PhieuThue(soPhieu, k, ngayThue, setBangDia, soLuong, soNgayMuon, donGia, n);
+				FrmMain.phieuThueDao.add(pt);
+				
 			}
 		}
 		if (o.equals(btnLuu)) {
@@ -340,6 +375,11 @@ public class FrmPhieuThue extends JFrame implements ActionListener {
 		txtSoPhieu.requestFocus();
 		
 	}
+	
+	private void DocDuLieuVaoTablePhieuThue() {
+		
+	}
+	
 //	private PhieuThue revertFromTextfield() {
 //		// TODO Auto-generated method stub
 //		PhieuThue pt = new PhieuThue();

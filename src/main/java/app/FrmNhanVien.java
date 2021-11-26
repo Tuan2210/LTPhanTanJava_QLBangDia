@@ -1,4 +1,3 @@
-//Nguoi thuc hien : NguyenTienDat_19512891
 package app;
 
 import java.awt.BorderLayout;
@@ -9,6 +8,8 @@ import java.awt.Font;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,17 +38,15 @@ import entity.NhanVien;
 import app.FrmBangDia;
 
 
-public class FrmNhanVien extends JFrame implements ActionListener {
-
-
-
-	/**
-	 * 
-	 */
+public class FrmNhanVien extends JFrame implements ActionListener, MouseListener {
 	private static final long serialVersionUID = 1L;
 	private JTable table;
-	private DefaultTableModel tableModelNV, tableModel;
-	private JTextField txtMaNV, txtTenNV, txtDienThoai,txtMoTa, txtMessage;
+	private DefaultTableModel tableModelNV;
+	private JTextField txtMaNV;
+	private JTextField txtTenNV;
+	private JTextField txtDienThoai;
+	private JTextField txtMoTa;
+	private JTextField txtMessage;
 	private JButton btnThem , btnXoaTrang , btnCapNhat, btnXoa , btnTim, btnLuu;
 	private JLabel lblTieuDe , lblMaNV, lblTenNV, lblDienThoai, lblMoTa;
 	//	private ListNhanVien listNhanVien;
@@ -185,7 +184,13 @@ public class FrmNhanVien extends JFrame implements ActionListener {
 			public void valueChanged(ListSelectionEvent e) {
 				// TODO Auto-generated method stub
 				int row = table.getSelectedRow();
-				fillForm(row);
+//				fillForm(row);
+				if(row != -1) {
+					txtMaNV.setText(table.getValueAt(row, 0).toString());
+					txtTenNV.setText(table.getValueAt(row, 1).toString());
+					txtDienThoai.setText(table.getValueAt(row, 2).toString());
+					txtMoTa.setText(table.getValueAt(row, 3).toString());
+				}
 			}
 		});
 
@@ -218,17 +223,22 @@ public class FrmNhanVien extends JFrame implements ActionListener {
 		if (o.equals(btnLuu)) {
 
 			txtMessage.setText("Đã lưu");
+			tableModelNV.setRowCount(0);
 		}
 		if (o.equals(btnXoaTrang)) {
-			emtyTextfields();
+			emptyTextfields();
+			DocDuLieuVaoTableNhanVien();
 //			updateTableData();
 		}
 		if (o.equals(btnXoa)) {
 			if (table.getSelectedRow() != -1) {
 				int index = table.getSelectedRow();
 				int del = JOptionPane.showConfirmDialog(null, "Bạn muốn xóa ?", "THÔNG BÁO", JOptionPane.YES_NO_OPTION);
+				int id = Integer.parseInt(txtMaNV.getText());
 				if(del==JOptionPane.YES_OPTION) {
-
+					FrmMain.nhanVienDao.removeNhanVien(id);
+					tableModelNV.setRowCount(0);
+					DocDuLieuVaoTableNhanVien();
 				}
 			}
 
@@ -238,18 +248,22 @@ public class FrmNhanVien extends JFrame implements ActionListener {
 
 		}
 		if(o.equals(btnCapNhat)){
-			String maNV = txtMaNV.getText();
 			if(validData()){
-				NhanVien nvMoi = revertFromTextfield();
-
+				int maNV = Integer.parseInt(txtMaNV.getText());
+				String tenNV = txtTenNV.getText().trim();
+				String dienThoai = txtDienThoai.getText().trim();
+				String moTa = txtMoTa.getText().trim();
+				FrmMain.nhanVienDao.updateNhanVien(maNV, tenNV, moTa, dienThoai);
+				tableModelNV.setRowCount(0);
+				DocDuLieuVaoTableNhanVien();
 			}
 		}
 	}
-	private void emtyTextfields() {
+	private void emptyTextfields() {
 		txtMaNV.setText("");
 		txtTenNV.setText("");
 		txtDienThoai.setText("");
-		txtMoTa.setText("");;
+		txtMoTa.setText("");
 		txtMaNV.requestFocus();
 	}
 	private void showMessage(String message, JTextField txt) {
@@ -292,12 +306,12 @@ public class FrmNhanVien extends JFrame implements ActionListener {
 	private void fillForm(int row) {
 		// TODO Auto-generated method stub
 		if (row != -1) {
-			////			NhanVien c = listNhanVien.getListNhanVien().get(row);
-			//			txtMaNV.setText(c.getMaNV());
-			//			txtTenNV.setText(c.getTenNV());
-			//			txtDienThoai.setText(c.getDienThoai());
-			//			txtMoTa.setText(c.getMoTa());
-			//			txtMaNV.requestFocus();
+//						NhanVien c = listNhanVien.getListNhanVien().get(row);
+//						txtMaNV.setText(c.getMaNV());
+//						txtTenNV.setText(c.getTenNV());
+//						txtDienThoai.setText(c.getDienThoai());
+//						txtMoTa.setText(c.getMoTa());
+//						txtMaNV.requestFocus();
 		}
 	}
 
@@ -312,13 +326,48 @@ public class FrmNhanVien extends JFrame implements ActionListener {
 	//		}
 	
 	public void DocDuLieuVaoTableNhanVien() {
-		List<NhanVien> list = FrmMain.nhanVienDao.getAllNhanVien();
+		List<NhanVien> listNV = new ArrayList<>();
+		listNV.clear();
+		listNV = FrmMain.nhanVienDao.getAllNhanVien();
 		
-		for(NhanVien n : list) {
+		for(NhanVien n : listNV) {
 			tableModelNV.addRow(new Object[] {
 					n.getMaNV(), n.getTenNV(), n.getDienThoai(), n.getMoTa()
 			});
 		}
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		int row = table.getSelectedRow();
+		txtMaNV.setText(table.getValueAt(row, 0).toString());
+		txtTenNV.setText(table.getValueAt(row, 1).toString());
+		txtDienThoai.setText(table.getValueAt(row, 2).toString());
+		txtMoTa.setText(table.getValueAt(row, 3).toString());
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
