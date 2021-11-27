@@ -207,7 +207,7 @@ public class FrmKhachHang extends JFrame implements ActionListener, MouseListene
 			String gioitinh = txtGioiTinh.getText();
 			String dienthoai = txtDienThoai.getText();
 			String diachi = txtDiaChi.getText();
-			int socmnd = Integer.parseInt(txtSoCMND.getText());
+			String socmnd = txtSoCMND.getText();
 			KhachHang kh = new KhachHang(hoten, gioitinh, dienthoai, diachi, socmnd);
 			FrmMain.khachHangDao.add(kh);
 			
@@ -218,7 +218,7 @@ public class FrmKhachHang extends JFrame implements ActionListener, MouseListene
 		if(o.equals(btnXoa)) {
 			if (table.getSelectedRow() != -1) {
 				int index = table.getSelectedRow();
-				int socmnd = Integer.parseInt(txtSoCMND.getText());
+				String socmnd = txtSoCMND.getText();
 				int del = JOptionPane.showConfirmDialog(null, "Bạn muốn xóa?", "THÔNG BÁO", JOptionPane.YES_NO_OPTION);
 				if(del==JOptionPane.YES_OPTION) {
 					FrmMain.khachHangDao.removeKhachHang(socmnd);
@@ -233,28 +233,25 @@ public class FrmKhachHang extends JFrame implements ActionListener, MouseListene
 		}
 		if(o.equals(btnLuu)) {		
 			
-<<<<<<< HEAD
 		}
 		if(o.equals(btnSua)) {
 			String hoten = txtHoTen.getText();
 			String gioitinh = txtGioiTinh.getText();
 			String dienthoai = txtDienThoai.getText();
 			String diachi = txtDiaChi.getText();
-			int socmnd = Integer.parseInt(txtSoCMND.getText());
+			String socmnd = txtSoCMND.getText();
 			KhachHang khUpdate = new KhachHang(hoten, gioitinh, dienthoai, diachi, socmnd);
 			
 			FrmMain.khachHangDao.updateKhachHang(khUpdate);
 			tableModel.setRowCount(0);
 			DocDuLieuVaoTableKhachHang();
-=======
->>>>>>> 82af7f23d77324cfbff68462e799a0589b5f1231
 		}
 		if(o.equals(btnTim)) {
 			if(txtNhap.getText() == null) {
 				tableModel.setRowCount(0);
 			}
 			else if (txtNhap.getText() != null) {
-				int pos = Integer.parseInt(txtNhap.getText());
+				String pos = txtNhap.getText();
 				tableModel.setRowCount(0);
 				List<KhachHang> listKH = FrmMain.khachHangDao.findKhachHang(pos);
 				
@@ -284,7 +281,7 @@ public class FrmKhachHang extends JFrame implements ActionListener, MouseListene
 		String Gioitinh = txtGioiTinh.getText().trim();
 		String DienThoai = txtDienThoai.getText().trim();
 		String diachi = txtDiaChi.getText().trim();
-		int soCMND = Integer.parseInt(txtSoCMND.getText());
+		String soCMND = txtSoCMND.getText();
 		
 		return new KhachHang(hoten, Gioitinh, DienThoai, diachi, soCMND);
 	}

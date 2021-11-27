@@ -39,7 +39,7 @@ public class KhachHangDao extends AbstractDao implements KhachHangServices {
 	}
 	
 	@Override
-	public void removeKhachHang(int cmnd) {
+	public void removeKhachHang(String cmnd) {
 		try {
 			em.getTransaction().begin();
 			KhachHang reference = em.getReference(KhachHang.class, cmnd);
@@ -64,7 +64,7 @@ public class KhachHangDao extends AbstractDao implements KhachHangServices {
 	}
 	
 	@Override
-	public List<KhachHang> findKhachHang(int cmnd) {
+	public List<KhachHang> findKhachHang(String cmnd) {
 		em.getTransaction().begin();
 		String statement = "SELECT * FROM KhachHang WHERE soCMND = " + "'" + cmnd + "'";
 		Query query = em.createNativeQuery(statement, KhachHang.class);
@@ -73,17 +73,14 @@ public class KhachHangDao extends AbstractDao implements KhachHangServices {
 		
 		return l;
 	}
-<<<<<<< HEAD
 
 	@Override
-	public KhachHang getKhachHangByID(int cmnd) {
+	public KhachHang getKhachHangByID(String cmnd) {
 		em.getTransaction().begin();
 		KhachHang n = em.find(KhachHang.class, cmnd);
 		em.getTransaction().commit();
 		
 		return n;
 	}
-=======
->>>>>>> 82af7f23d77324cfbff68462e799a0589b5f1231
 
 }

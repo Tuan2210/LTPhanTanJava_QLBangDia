@@ -307,7 +307,6 @@ public class FrmPhieuThue extends JFrame implements ActionListener {
 //				private JComboBox cbCMND, cbTenBang, cbMaNV;
 				int soPhieu = Integer.parseInt(txtSoPhieu.getText());
 				String cmnd = cbCMND.getSelectedItem().toString();
-				int cmndKH = Integer.parseInt(cmnd);
 				String tenBang = cbTenBang.getSelectedItem().toString();
 				String nvID = cbMaNV.getSelectedItem().toString();
 				int maNV = Integer.parseInt(nvID);
@@ -318,7 +317,7 @@ public class FrmPhieuThue extends JFrame implements ActionListener {
 				
 				List<BangDia> b = FrmMain.bangDiaDao.findBangDia(tenBang);
 				NhanVien n = FrmMain.nhanVienDao.getNhanVienByID(maNV);
-				KhachHang k = FrmMain.khachHangDao.getKhachHangByID(cmndKH);
+				KhachHang k = FrmMain.khachHangDao.getKhachHangByID(cmnd);
 				
 				Set<BangDia> setBangDia = new HashSet<>(b);
 				

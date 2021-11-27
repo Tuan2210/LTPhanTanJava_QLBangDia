@@ -179,7 +179,6 @@ public class FrmNhanVien extends JFrame implements ActionListener, MouseListener
 
 //		updateTableData();
 
-<<<<<<< HEAD
 		table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 
 			public void valueChanged(ListSelectionEvent e) {
@@ -194,7 +193,6 @@ public class FrmNhanVien extends JFrame implements ActionListener, MouseListener
 				}
 			}
 		});
-=======
 //		table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 //
 //			public void valueChanged(ListSelectionEvent e) {
@@ -203,7 +201,6 @@ public class FrmNhanVien extends JFrame implements ActionListener, MouseListener
 //				fillForm(row);
 //			}
 //		});
->>>>>>> 82af7f23d77324cfbff68462e799a0589b5f1231
 
 		//		btnTrolai.addActionListener(this);
 		btnThem.addActionListener(this);
@@ -238,10 +235,7 @@ public class FrmNhanVien extends JFrame implements ActionListener, MouseListener
 		}
 		if (o.equals(btnXoaTrang)) {
 			emptyTextfields();
-<<<<<<< HEAD
 			DocDuLieuVaoTableNhanVien();
-=======
->>>>>>> 82af7f23d77324cfbff68462e799a0589b5f1231
 //			updateTableData();
 		}
 		if (o.equals(btnXoa)) {
