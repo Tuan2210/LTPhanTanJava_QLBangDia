@@ -6,6 +6,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 
 import entity.BangDia;
+import entity.NhanVien;
 import service.BangDiaServices;
 
 public class BangDiaDao extends AbstractDao implements BangDiaServices {
@@ -66,23 +67,21 @@ public class BangDiaDao extends AbstractDao implements BangDiaServices {
 	@Override
 	public List<BangDia> findBangDia(String ten) {
 		em.getTransaction().begin();
-<<<<<<< HEAD
 		String statement = "SELECT * FROM BangDia WHERE tenBD LIKE " +  "'%" + ten + "%'"  ;
-=======
-		String statement = "SELECT * FROM BangDia WHERE tenBD = " +  "'" + ten + "'"  ;
->>>>>>> 82af7f23d77324cfbff68462e799a0589b5f1231
+//		String statement1 = "SELECT * FROM BangDia WHERE tenBD = " +  "'" + ten + "'"  ;
 		Query query = em.createNativeQuery(statement, BangDia.class);
 		List<BangDia> b = query.getResultList();
 		em.getTransaction().commit();
 		
 		return b;
 	}
-<<<<<<< HEAD
+	public BangDia getBangDiaByTen(String ten) {
+		em.getTransaction().begin();
+		String statement = "SELECT * FROM BangDia WHERE tenBD LIKE " +  "'%" + ten + "%'"  ;
+		Query query = em.createNativeQuery(statement, BangDia.class);
+		BangDia bd = (BangDia) query.getSingleResult();
+		em.getTransaction().commit();
+		return bd;
+	}
 }
-=======
-<<<<<<< HEAD
-}
-=======
-}
->>>>>>> a0b97d703cb4e06aef4a38001f28fa3283ab80d2
->>>>>>> 82af7f23d77324cfbff68462e799a0589b5f1231
+

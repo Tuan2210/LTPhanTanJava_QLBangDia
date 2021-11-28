@@ -1,4 +1,3 @@
-//Nguoi thuc hien : NguyenTienDat_19512891
 package app;
 
 import java.awt.BorderLayout;
@@ -13,6 +12,7 @@ import java.sql.SQLException;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -33,14 +33,12 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 import app.FrmThongKe;
+import dao.BangDiaDao;
 import entity.BangDia;
 import entity.KhachHang;
 import entity.NhanVien;
 import entity.PhieuThue;
 import app.FrmBangDia;
-
-
-
 
 
 
@@ -171,15 +169,11 @@ public class FrmPhieuThue extends JFrame implements ActionListener {
 		b.add(b7= Box.createHorizontalBox());
 		b.add(Box.createHorizontalStrut(600));
 		
-		
-		b7.add(new JScrollPane(table1 = new JTable()));
-		table1.setRowHeight(25);
-		
 		String tenCot[] = {"Số phiếu", "Số CMND", "Tên băng đĩa", "Ngày thuê", "Số ngày mượn", "Số lượng", "Đơn giá", "Tình trạng"};
 		tableModel = new DefaultTableModel(tenCot, 0);
-		table1 = new JTable(tableModel);
 		DocDuLieuVaoTablePhieuThue();
-		
+		b7.add(new JScrollPane(table1 = new JTable(tableModel)));
+		table1.setRowHeight(25);
 		b.add(b6= Box.createHorizontalBox());
 		b.add(Box.createHorizontalStrut(600));
 		
@@ -273,17 +267,17 @@ public class FrmPhieuThue extends JFrame implements ActionListener {
 		// TODO Auto-generated method stub
 		String soPhieu = txtSoPhieu.getText().trim();
 		String MaBD = txtmaBang.getText().trim();
-		String donGia = txtdonGia.getText().trim();
-		String soLuong = txtslDia.getText().trim();
+//		String donGia = txtdonGia.getText().trim();
+//		String soLuong = txtslDia.getText().trim();
 		
 		if (!(!soPhieu.equals("") && soPhieu.matches("[0-9]+"))) {
 			showMessage("Error: mã nhân viên", txtSoPhieu);
 			return false;
 		}
-		if (!(!MaBD.equals("") && MaBD.matches("[0-9]+"))) {
-			showMessage("Error: tên nhân viên", txtmaBang);
-			return false;
-		}
+//		if (!(!MaBD.equals("") && MaBD.matches("[0-9]+"))) {
+//			showMessage("Error: tên nhân viên", txtmaBang);
+//			return false;
+//		}
 		
 		return true;
 	}
@@ -307,7 +301,6 @@ public class FrmPhieuThue extends JFrame implements ActionListener {
 //				private JComboBox cbCMND, cbTenBang, cbMaNV;
 				int soPhieu = Integer.parseInt(txtSoPhieu.getText());
 				String cmnd = cbCMND.getSelectedItem().toString();
-				int cmndKH = Integer.parseInt(cmnd);
 				String tenBang = cbTenBang.getSelectedItem().toString();
 				String nvID = cbMaNV.getSelectedItem().toString();
 				int maNV = Integer.parseInt(nvID);
@@ -318,7 +311,7 @@ public class FrmPhieuThue extends JFrame implements ActionListener {
 				
 				List<BangDia> b = FrmMain.bangDiaDao.findBangDia(tenBang);
 				NhanVien n = FrmMain.nhanVienDao.getNhanVienByID(maNV);
-				KhachHang k = FrmMain.khachHangDao.getKhachHangByID(cmndKH);
+				KhachHang k = FrmMain.khachHangDao.getKhachHangByID(cmnd);
 				
 				Set<BangDia> setBangDia = new HashSet<>(b);
 				
@@ -338,23 +331,65 @@ public class FrmPhieuThue extends JFrame implements ActionListener {
 		if (o.equals(btnXoa)) {
 			if (table1.getSelectedRow() != -1) {
 				int index = table1.getSelectedRow();
+				int sp = Integer.parseInt(txtTim.getText().trim());
 				int del = JOptionPane.showConfirmDialog(null, "Bạn muốn xóa?", "THÔNG BÁO", JOptionPane.YES_NO_OPTION);
 				if(del==JOptionPane.YES_OPTION) {
-
+					FrmMain.phieuThueDao.removePhieuThue(sp);
+					tableModel.setRowCount(0);
+					DocDuLieuVaoTablePhieuThue();
 				}
 			
 			}
 		}
 		if (o.equals(btnTim)) {
-			int sp = Integer.parseInt(txtTim.getText().trim());
+//			int sp = Integer.parseInt(txtTim.getText().trim());
+			if(txtTim.getText() == null) {
+				tableModel.setRowCount(0);
+			}
+			else {
+				int pos = Integer.parseInt(txtTim.getText().trim()) ;
+				tableModel.setRowCount(0);
+				String bangDia =  cbTenBang.getSelectedItem().toString();
+				String cmnd = cbCMND.getSelectedItem().toString();
+				List<PhieuThue> listPhieuThue = FrmMain.phieuThueDao.findPhieuThue(pos);
+				for (PhieuThue phieuThue : listPhieuThue) {
+					BangDia bd = new BangDia();
+					bd = FrmMain.bangDiaDao.getBangDiaByTen(bangDia);
+					tableModel.addRow(new Object[] {
+							phieuThue.getSoPhieu(),
+							cmnd,
+							bangDia,
+							phieuThue.getNgayThue(),
+							phieuThue.getSoNgayMuon(),
+							phieuThue.getSoluong(),
+							phieuThue.getDonGia(),
+							((entity.BangDia) bd).getTinhTrang(),
+					});
+				}
+			}
 
 		}
 		if(o.equals(btnSua)){
 			int soPhieu = Integer.parseInt(txtSoPhieu.getText());
-			if(validData()){
-//				PhieuThue pMoi = revertFromTextfield();
-
-			}
+			String cmnd = cbCMND.getSelectedItem().toString();
+			String tenBang = cbTenBang.getSelectedItem().toString();
+			String nvID = cbMaNV.getSelectedItem().toString();
+			int maNV = Integer.parseInt(nvID);
+			int soNgayMuon = Integer.parseInt(txtSoNgaymuon.getText());
+			String ngayThue = txtNgayThue.getText().toString().trim();
+			int soLuong = Integer.parseInt(txtslDia.getText());
+			double donGia = Double.parseDouble(txtdonGia.getText());
+			
+			List<BangDia> b = FrmMain.bangDiaDao.findBangDia(tenBang);
+			NhanVien n = FrmMain.nhanVienDao.getNhanVienByID(maNV);
+			KhachHang k = FrmMain.khachHangDao.getKhachHangByID(cmnd);
+			
+			Set<BangDia> setBangDia = new HashSet<>(b);
+			
+			PhieuThue pt = new PhieuThue(soPhieu, k, ngayThue, setBangDia, soLuong, soNgayMuon, donGia, n);
+			FrmMain.phieuThueDao.updatePhieuThue(pt);
+			tableModel.setRowCount(0);
+			DocDuLieuVaoTablePhieuThue();
 		}
 		if (o.equals(btnBaoCao)) {
 			new FrmThongKe().setVisible(true);
@@ -377,9 +412,27 @@ public class FrmPhieuThue extends JFrame implements ActionListener {
 	}
 	
 	private void DocDuLieuVaoTablePhieuThue() {
-		
+		List<PhieuThue> listPhieuThue = new ArrayList<>();
+		List<BangDia> bangDia2 = (List<entity.BangDia>) FrmMain.bangDiaDao.getAllBangDia();
+		listPhieuThue.clear();
+		listPhieuThue = FrmMain.phieuThueDao.getAllPhieuThue();
+		String bangDia =  cbTenBang.getSelectedItem().toString();
+		String cmnd = cbCMND.getSelectedItem().toString();
+		for (PhieuThue phieuThue : listPhieuThue) {
+			BangDia bd = new BangDia();
+			bd = FrmMain.bangDiaDao.getBangDiaByTen(bangDia);
+			tableModel.addRow(new Object[] {
+					phieuThue.getSoPhieu(),
+					cmnd,
+					bangDia,
+					phieuThue.getNgayThue(),
+					phieuThue.getSoNgayMuon(),
+					phieuThue.getSoluong(),
+					phieuThue.getDonGia(),
+					((entity.BangDia) bd).getTinhTrang(),
+			});
+		}
 	}
-	
 //	private PhieuThue revertFromTextfield() {
 //		// TODO Auto-generated method stub
 //		PhieuThue pt = new PhieuThue();
