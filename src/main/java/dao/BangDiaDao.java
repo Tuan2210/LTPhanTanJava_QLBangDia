@@ -67,12 +67,14 @@ public class BangDiaDao extends AbstractDao implements BangDiaServices {
 	@Override
 	public List<BangDia> findBangDia(String ten) {
 		em.getTransaction().begin();
+
 		String statement = "SELECT * FROM BangDia WHERE tenBD LIKE " +  "'%" + ten + "%'"  ;
 //		String statement1 = "SELECT * FROM BangDia WHERE tenBD = " +  "'" + ten + "'"  ;
+//		String statement = "SELECT * FROM BangDia WHERE tenBD LIKE " +  "'%" + ten + "%'"  ;
+//		String statement = "SELECT * FROM BangDia WHERE tenBD = " +  "'" + ten + "'"  ;
 		Query query = em.createNativeQuery(statement, BangDia.class);
 		List<BangDia> b = query.getResultList();
 		em.getTransaction().commit();
-		
 		return b;
 	}
 	public BangDia getBangDiaByTen(String ten) {
@@ -83,5 +85,6 @@ public class BangDiaDao extends AbstractDao implements BangDiaServices {
 		em.getTransaction().commit();
 		return bd;
 	}
+
 }
 

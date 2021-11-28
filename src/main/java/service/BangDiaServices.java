@@ -10,4 +10,5 @@ public interface BangDiaServices {
 	public void removeBangDia(int id);
 	public void updateBangDia(BangDia b);
 	public List<BangDia> findBangDia(String ten);
+	public BangDia getBangDiaByTen(String ten);
 }
