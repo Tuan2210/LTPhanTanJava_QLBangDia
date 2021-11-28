@@ -80,7 +80,8 @@ public class KhachHangDao extends AbstractDao implements KhachHangServices {
 		KhachHang n = em.find(KhachHang.class, cmnd);
 		em.getTransaction().commit();
 		
-		return n;
+		return n; 
 	}
+
 
 }

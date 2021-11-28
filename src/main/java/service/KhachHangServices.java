@@ -11,4 +11,5 @@ public interface KhachHangServices {
 	public void updateKhachHang(KhachHang k);
 	public List<KhachHang> findKhachHang(String cmnd);
 	public KhachHang getKhachHangByID(String cmnd);
+//	public boolean updateMkSdt(String cmnd, String sdt);
 }
