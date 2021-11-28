@@ -31,5 +31,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="sqljdbc41.jar"/>
+	<classpathentry kind="lib" path="C:/Users/tongh/Downloads/sqljdbc41.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
