@@ -2,6 +2,7 @@ package entity;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -13,7 +14,7 @@ import javax.persistence.OneToMany;
 public class KhachHang implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
-	private int soCMND;
+	private String soCMND;
 	private String hoTen;
 	private String gioiTinh;
 	private String dienThoai;
@@ -26,7 +27,7 @@ public class KhachHang implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 	
-	public KhachHang(String hoTen, String gioiTinh, String dienThoai, String diaChi, int soCMND) {
+	public KhachHang(String hoTen, String gioiTinh, String dienThoai, String diaChi, String soCMND) {
 		super();
 		this.hoTen = hoTen;
 		this.gioiTinh = gioiTinh;
@@ -35,7 +36,7 @@ public class KhachHang implements Serializable{
 		this.soCMND = soCMND;
 	}
 
-	public KhachHang(int soCMND) {
+	public KhachHang(String soCMND) {
 		super();
 		this.soCMND = soCMND;
 	}
@@ -73,21 +74,19 @@ public class KhachHang implements Serializable{
 		this.diaChi = diaChi;
 	}
 
-	public int getSoCMND() {
+	public String getSoCMND() {
 		return soCMND;
 	}
 
-	public void setSoCMND(int soCMND) {
+	public void setSoCMND(String soCMND) {
 		this.soCMND = soCMND;
 	}
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + soCMND;
-		return result;
+		return Objects.hash(soCMND);
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -97,9 +96,6 @@ public class KhachHang implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		KhachHang other = (KhachHang) obj;
-		if (soCMND != other.soCMND)
-			return false;
-		return true;
+		return Objects.equals(soCMND, other.soCMND);
 	}
-	
 }
