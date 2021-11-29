@@ -9,9 +9,12 @@ import javax.swing.JTextField;
 
 public class Regex {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	@SuppressWarnings("deprecation")
 >>>>>>> 8ab78b7df95e5ab02eed23b0958127c208b42927
+=======
+>>>>>>> parent of 8ab78b7 (fix all code sever)
 	public boolean regexSDT(JPasswordField txtSDT) {
 		String input = txtSDT.getText().trim();
 		String regex = "^(0[0-9]{9})$";
@@ -25,6 +28,7 @@ public class Regex {
 		}else
 			return true;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	
 	public boolean regexSDTTxt(JTextField txtSDT) {
@@ -60,6 +64,9 @@ public class Regex {
 =======
 
 >>>>>>> 8ab78b7df95e5ab02eed23b0958127c208b42927
+=======
+	
+>>>>>>> parent of 8ab78b7 (fix all code sever)
 	public boolean regexCMND(JTextField txtCMND) {
 		String input = txtCMND.getText().trim();
 		String regex = "^([0-9]{9}|[0-9]{12})$";

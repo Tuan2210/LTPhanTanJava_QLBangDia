@@ -1,25 +1,39 @@
 package dao;
 
+<<<<<<< HEAD
 import java.io.Serializable;
 import java.rmi.RemoteException;
+=======
+>>>>>>> 530a450164c67f72a14e903d974c06ac8d0b9522
 import java.util.List;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import entity.KhachHang;
 import entity.NhanVien;
 =======
 >>>>>>> 8ab78b7df95e5ab02eed23b0958127c208b42927
+=======
+=======
+import entity.KhachHang;
+>>>>>>> 530a450164c67f72a14e903d974c06ac8d0b9522
+import entity.NhanVien;
+>>>>>>> parent of 8ab78b7 (fix all code sever)
 import entity.PhieuThue;
 import service.PhieuThueServices;
 
 public class PhieuThueDao extends AbstractDao implements PhieuThueServices, Serializable {
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 8ab78b7df95e5ab02eed23b0958127c208b42927
+=======
+
+>>>>>>> parent of 8ab78b7 (fix all code sever)
 	/**
 	 * 
 	 */
@@ -43,7 +57,6 @@ public class PhieuThueDao extends AbstractDao implements PhieuThueServices, Seri
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<PhieuThue> getAllPhieuThue() {
 		em.getTransaction().begin();
@@ -70,7 +83,6 @@ public class PhieuThueDao extends AbstractDao implements PhieuThueServices, Seri
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<PhieuThue> findPhieuThue(int id) {
 		em.getTransaction().begin();
@@ -78,11 +90,11 @@ public class PhieuThueDao extends AbstractDao implements PhieuThueServices, Seri
 		Query query = em.createNativeQuery(statement, PhieuThue.class);
 		List<PhieuThue> l = query.getResultList();
 		em.getTransaction().commit();
-
+		
 		return l;
+<<<<<<< HEAD
 	}
-
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	public List<String> getTenBangDia() {
 		em.getTransaction().begin();
@@ -92,11 +104,10 @@ public class PhieuThueDao extends AbstractDao implements PhieuThueServices, Seri
 		Query query = em.createNativeQuery(statement);
 		List<String> l = query.getResultList();
 		em.getTransaction().commit();
-
+		
 		return l;
 	}
-
-	@SuppressWarnings("unchecked")
+	
 	@Override 
 	public List<PhieuThue> getPhieuThueByCMND(String cmnd) {
 		em.getTransaction().begin();
@@ -104,11 +115,10 @@ public class PhieuThueDao extends AbstractDao implements PhieuThueServices, Seri
 		Query query = em.createNativeQuery(statement, PhieuThue.class);
 		List<PhieuThue> l = query.getResultList();
 		em.getTransaction().commit();
-
+		
 		return l;
 	}
-
-	@SuppressWarnings("unchecked")
+	
 	@Override 
 	public List<String> getTenBangDiaByCMND(String cmnd) {
 		em.getTransaction().begin();
@@ -118,8 +128,9 @@ public class PhieuThueDao extends AbstractDao implements PhieuThueServices, Seri
 		Query query = em.createNativeQuery(statement);
 		List<String> l = query.getResultList();
 		em.getTransaction().commit();
-
+		
 		return l;
+<<<<<<< HEAD
 >>>>>>> 8ab78b7df95e5ab02eed23b0958127c208b42927
 	}
 
@@ -133,6 +144,10 @@ public class PhieuThueDao extends AbstractDao implements PhieuThueServices, Seri
 			e.printStackTrace();
 			em.getTransaction().rollback();
 		}
+=======
+=======
+>>>>>>> 530a450164c67f72a14e903d974c06ac8d0b9522
+>>>>>>> parent of 8ab78b7 (fix all code sever)
 	}
 
 	@Override

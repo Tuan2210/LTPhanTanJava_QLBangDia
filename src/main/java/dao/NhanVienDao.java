@@ -12,6 +12,7 @@ import service.NhanVienServices;
 
 public class NhanVienDao extends AbstractDao implements NhanVienServices, Serializable{
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	/**
 	 * 
@@ -19,6 +20,9 @@ public class NhanVienDao extends AbstractDao implements NhanVienServices, Serial
 	private static final long serialVersionUID = -7565956755556641046L;
 
 =======
+=======
+
+>>>>>>> parent of 8ab78b7 (fix all code sever)
 	/**
 	 * 
 	 */
@@ -40,7 +44,6 @@ public class NhanVienDao extends AbstractDao implements NhanVienServices, Serial
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<NhanVien> getAllNhanVien() {
 		em.getTransaction().begin();
@@ -52,10 +55,14 @@ public class NhanVienDao extends AbstractDao implements NhanVienServices, Serial
 		return list;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	
 =======
 
 >>>>>>> 8ab78b7df95e5ab02eed23b0958127c208b42927
+=======
+	
+>>>>>>> parent of 8ab78b7 (fix all code sever)
 	@Override
 	public void removeNhanVien(int id) {
 		try {
@@ -70,6 +77,9 @@ public class NhanVienDao extends AbstractDao implements NhanVienServices, Serial
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 8ab78b7 (fix all code sever)
 //	@Override
 //	public void updateNhanVien(NhanVien n) {
 //		try {
@@ -82,8 +92,11 @@ public class NhanVienDao extends AbstractDao implements NhanVienServices, Serial
 //		}
 //	}
 	
+<<<<<<< HEAD
 =======
 >>>>>>> 8ab78b7df95e5ab02eed23b0958127c208b42927
+=======
+>>>>>>> parent of 8ab78b7 (fix all code sever)
 	@Override
 	public void updateNhanVien(int id, String ten, String moTa, String dienThoai) {
 		em.getTransaction().begin();
@@ -94,9 +107,12 @@ public class NhanVienDao extends AbstractDao implements NhanVienServices, Serial
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	@SuppressWarnings("unchecked")
 >>>>>>> 8ab78b7df95e5ab02eed23b0958127c208b42927
+=======
+>>>>>>> parent of 8ab78b7 (fix all code sever)
 	@Override
 	public List<NhanVien> findNhanVien(int id) {
 		em.getTransaction().begin();
@@ -105,10 +121,14 @@ public class NhanVienDao extends AbstractDao implements NhanVienServices, Serial
 		List<NhanVien> l = query.getResultList();
 		em.getTransaction().commit();
 <<<<<<< HEAD
+<<<<<<< HEAD
 		
 =======
 
 >>>>>>> 8ab78b7df95e5ab02eed23b0958127c208b42927
+=======
+		
+>>>>>>> parent of 8ab78b7 (fix all code sever)
 		return l;
 	}
 
@@ -118,10 +138,14 @@ public class NhanVienDao extends AbstractDao implements NhanVienServices, Serial
 		NhanVien n = em.find(NhanVien.class, id);
 		em.getTransaction().commit();
 <<<<<<< HEAD
+<<<<<<< HEAD
 		
 =======
 
 >>>>>>> 8ab78b7df95e5ab02eed23b0958127c208b42927
+=======
+		
+>>>>>>> parent of 8ab78b7 (fix all code sever)
 		return n;
 	}
 }

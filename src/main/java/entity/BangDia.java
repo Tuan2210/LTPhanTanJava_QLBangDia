@@ -1,5 +1,10 @@
 package entity;
 
+/*
+ *Ngư�?i viết: �?inh Quang Tuấn - MSSV: 19468641 - Nhóm 13
+ *Ngày viết: 11/5/2021 
+ * */
+
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
@@ -27,7 +32,7 @@ public class BangDia implements Serializable{
 	private String ghiChu;
 	@ManyToMany(mappedBy = "bangDia")
 	private Set<PhieuThue> groups = new HashSet<>();
-
+	
 	public BangDia(String tenBD, String theLoai, String tinhTrang, int soLuong, int soNgayMuon, double donGia,
 			String hangSX, String ghiChu) {
 		super();
@@ -95,10 +100,14 @@ public class BangDia implements Serializable{
 		this.ghiChu = ghiChu;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	
 =======
 
 >>>>>>> 8ab78b7df95e5ab02eed23b0958127c208b42927
+=======
+	
+>>>>>>> parent of 8ab78b7 (fix all code sever)
 	public Set<PhieuThue> getGroups() {
 		return groups;
 	}
@@ -118,17 +127,17 @@ public class BangDia implements Serializable{
 		this.hangSX = hangSX;
 		this.ghiChu = ghiChu;
 	}
-
+	
 	public BangDia() {
 		super();
 	}
-
+	
 	public BangDia(int maBD) {
 		super();
 		this.maBD = maBD;
 	}
-
-
+	
+	
 	@Override
 	public String toString() {
 		return "BangDia [maBD=" + maBD + ", tenBD=" + tenBD + ", theLoai=" + theLoai + ", tinhTrang=" + tinhTrang
@@ -151,6 +160,6 @@ public class BangDia implements Serializable{
 		return maBD == other.maBD;
 	}
 
-
-
+	
+	
 }

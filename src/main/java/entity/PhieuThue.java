@@ -32,7 +32,7 @@ public class PhieuThue implements Serializable{
 	@ManyToOne
 	@JoinColumn(name = "maNV")
 	private NhanVien nhanVien;
-
+	
 	public PhieuThue(int soPhieu, KhachHang cMND, String ngayThue, Set<BangDia> bangDia, int soluong, int soNgayMuon,
 			double donGia, NhanVien nhanVien) {
 		super();
@@ -114,6 +114,6 @@ public class PhieuThue implements Serializable{
 	public void setNhanVien(NhanVien nhanVien) {
 		this.nhanVien = nhanVien;
 	}
-
-
+	
+	
 }
