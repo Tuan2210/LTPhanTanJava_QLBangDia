@@ -1,4 +1,3 @@
-//Nguoi thuc hien : NguyenTienDat_19512891
 package app;
 
 import java.awt.BorderLayout;
@@ -14,6 +13,10 @@ import java.sql.SQLException;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+<<<<<<< HEAD
+=======
+import java.util.Iterator;
+>>>>>>> 530a450164c67f72a14e903d974c06ac8d0b9522
 import java.util.List;
 import java.util.Set;
 
@@ -35,15 +38,24 @@ import javax.swing.table.DefaultTableModel;
 
 import app.FrmThongKe;
 import dao.BangDiaDao;
+<<<<<<< HEAD
 import dao.KhachHangDao;
 import dao.NhanVienDao;
 import dao.PhieuThueDao;
+=======
+>>>>>>> 530a450164c67f72a14e903d974c06ac8d0b9522
 import entity.BangDia;
 import entity.KhachHang;
 import entity.NhanVien;
 import entity.PhieuThue;
 import app.FrmBangDia;
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 530a450164c67f72a14e903d974c06ac8d0b9522
 public class FrmPhieuThue extends JFrame implements ActionListener {
 
 	/**
@@ -271,6 +283,7 @@ public class FrmPhieuThue extends JFrame implements ActionListener {
 //	}
 	private boolean validData() {
 		// TODO Auto-generated method stub
+<<<<<<< HEAD
 //		String soPhieu = txtSoPhieu.getText().trim();
 //		String MaBD = txtmaBang.getText().trim();
 //		String donGia = txtdonGia.getText().trim();
@@ -285,6 +298,22 @@ public class FrmPhieuThue extends JFrame implements ActionListener {
 ////			return false;
 //		}
 //		
+=======
+		String soPhieu = txtSoPhieu.getText().trim();
+		String MaBD = txtmaBang.getText().trim();
+//		String donGia = txtdonGia.getText().trim();
+//		String soLuong = txtslDia.getText().trim();
+		
+		if (!(!soPhieu.equals("") && soPhieu.matches("[0-9]+"))) {
+			showMessage("Error: mã nhân viên", txtSoPhieu);
+			return false;
+		}
+//		if (!(!MaBD.equals("") && MaBD.matches("[0-9]+"))) {
+//			showMessage("Error: tên nhân viên", txtmaBang);
+//			return false;
+//		}
+		
+>>>>>>> 530a450164c67f72a14e903d974c06ac8d0b9522
 		return true;
 	}
 	private void showMessage(String message, JTextField txt) {
@@ -305,8 +334,11 @@ public class FrmPhieuThue extends JFrame implements ActionListener {
 //				private JTextField txtSoPhieu, txtNgayThue, txtmaThe, txtmaBang , txtTenBang , txtTheLoai,txtTinhTrang , txtslDia , txtSoNgaymuon , txtdonGia, txtTim,txtMessage;
 //				private JTable table1;
 //				private JComboBox cbCMND, cbTenBang, cbMaNV;
+<<<<<<< HEAD
 				cbCMND.setSelectedItem(cbCMND.getSelectedIndex());
 				
+=======
+>>>>>>> 530a450164c67f72a14e903d974c06ac8d0b9522
 				int soPhieu = Integer.parseInt(txtSoPhieu.getText());
 				String cmnd = cbCMND.getSelectedItem().toString();
 				String tenBang = cbTenBang.getSelectedItem().toString();
@@ -317,6 +349,7 @@ public class FrmPhieuThue extends JFrame implements ActionListener {
 				int soLuong = Integer.parseInt(txtslDia.getText());
 				double donGia = Double.parseDouble(txtdonGia.getText());
 				
+<<<<<<< HEAD
 				System.out.println(cmnd);
 				
 				List<BangDia> b = bangDiaDao.findBangDia(tenBang);
@@ -335,6 +368,17 @@ public class FrmPhieuThue extends JFrame implements ActionListener {
 				tableModel.addRow(new Object[] {
 						pt.getSoPhieu(), k.getSoCMND(), tenBang, ngayThue, soNgayMuon, soLuong, donGia
 				});
+=======
+				List<BangDia> b = FrmMain.bangDiaDao.findBangDia(tenBang);
+				NhanVien n = FrmMain.nhanVienDao.getNhanVienByID(maNV);
+				KhachHang k = FrmMain.khachHangDao.getKhachHangByID(cmnd);
+				
+				Set<BangDia> setBangDia = new HashSet<>(b);
+				
+				PhieuThue pt = new PhieuThue(soPhieu, k, ngayThue, setBangDia, soLuong, soNgayMuon, donGia, n);
+				FrmMain.phieuThueDao.add(pt);
+				
+>>>>>>> 530a450164c67f72a14e903d974c06ac8d0b9522
 			}
 		}
 		if (o.equals(btnLuu)) {
@@ -348,18 +392,46 @@ public class FrmPhieuThue extends JFrame implements ActionListener {
 		if (o.equals(btnXoa)) {
 			if (table1.getSelectedRow() != -1) {
 				int index = table1.getSelectedRow();
+				int sp = Integer.parseInt(txtTim.getText().trim());
 				int del = JOptionPane.showConfirmDialog(null, "Bạn muốn xóa?", "THÔNG BÁO", JOptionPane.YES_NO_OPTION);
 				if(del==JOptionPane.YES_OPTION) {
-
+					FrmMain.phieuThueDao.removePhieuThue(sp);
+					tableModel.setRowCount(0);
+					DocDuLieuVaoTablePhieuThue();
 				}
 			
 			}
 		}
 		if (o.equals(btnTim)) {
-			int sp = Integer.parseInt(txtTim.getText().trim());
+//			int sp = Integer.parseInt(txtTim.getText().trim());
+			if(txtTim.getText() == null) {
+				tableModel.setRowCount(0);
+			}
+			else {
+				int pos = Integer.parseInt(txtTim.getText().trim()) ;
+				tableModel.setRowCount(0);
+				String bangDia =  cbTenBang.getSelectedItem().toString();
+				String cmnd = cbCMND.getSelectedItem().toString();
+				List<PhieuThue> listPhieuThue = FrmMain.phieuThueDao.findPhieuThue(pos);
+				for (PhieuThue phieuThue : listPhieuThue) {
+					BangDia bd = new BangDia();
+					bd = FrmMain.bangDiaDao.getBangDiaByTen(bangDia);
+					tableModel.addRow(new Object[] {
+							phieuThue.getSoPhieu(),
+							cmnd,
+							bangDia,
+							phieuThue.getNgayThue(),
+							phieuThue.getSoNgayMuon(),
+							phieuThue.getSoluong(),
+							phieuThue.getDonGia(),
+							((entity.BangDia) bd).getTinhTrang(),
+					});
+				}
+			}
 
 		}
 		if(o.equals(btnSua)){
+<<<<<<< HEAD
 			if (table1.getSelectedRow() != -1) {
 				int index = table1.getSelectedRow();
 				int sp = Integer.parseInt(txtTim.getText().trim());
@@ -370,6 +442,28 @@ public class FrmPhieuThue extends JFrame implements ActionListener {
 					DocDuLieuVaoTablePhieuThue();
 				}
 			}
+=======
+			int soPhieu = Integer.parseInt(txtSoPhieu.getText());
+			String cmnd = cbCMND.getSelectedItem().toString();
+			String tenBang = cbTenBang.getSelectedItem().toString();
+			String nvID = cbMaNV.getSelectedItem().toString();
+			int maNV = Integer.parseInt(nvID);
+			int soNgayMuon = Integer.parseInt(txtSoNgaymuon.getText());
+			String ngayThue = txtNgayThue.getText().toString().trim();
+			int soLuong = Integer.parseInt(txtslDia.getText());
+			double donGia = Double.parseDouble(txtdonGia.getText());
+			
+			List<BangDia> b = FrmMain.bangDiaDao.findBangDia(tenBang);
+			NhanVien n = FrmMain.nhanVienDao.getNhanVienByID(maNV);
+			KhachHang k = FrmMain.khachHangDao.getKhachHangByID(cmnd);
+			
+			Set<BangDia> setBangDia = new HashSet<>(b);
+			
+			PhieuThue pt = new PhieuThue(soPhieu, k, ngayThue, setBangDia, soLuong, soNgayMuon, donGia, n);
+			FrmMain.phieuThueDao.updatePhieuThue(pt);
+			tableModel.setRowCount(0);
+			DocDuLieuVaoTablePhieuThue();
+>>>>>>> 530a450164c67f72a14e903d974c06ac8d0b9522
 		}
 		if (o.equals(btnBaoCao)) {
 			new FrmThongKe().setVisible(true);
@@ -444,6 +538,7 @@ public class FrmPhieuThue extends JFrame implements ActionListener {
 	}
 	
 	private void DocDuLieuVaoTablePhieuThue() {
+<<<<<<< HEAD
 		List<PhieuThue> listPhieuThue = phieuThueDao.getAllPhieuThue();
 		List<String> lTenBD = phieuThueDao.getTenBangDia();
 		
@@ -454,6 +549,29 @@ public class FrmPhieuThue extends JFrame implements ActionListener {
 		}
 	}
 	
+=======
+		List<PhieuThue> listPhieuThue = new ArrayList<>();
+		List<BangDia> bangDia2 = (List<entity.BangDia>) FrmMain.bangDiaDao.getAllBangDia();
+		listPhieuThue.clear();
+		listPhieuThue = FrmMain.phieuThueDao.getAllPhieuThue();
+		String bangDia =  cbTenBang.getSelectedItem().toString();
+		String cmnd = cbCMND.getSelectedItem().toString();
+		for (PhieuThue phieuThue : listPhieuThue) {
+			BangDia bd = new BangDia();
+			bd = FrmMain.bangDiaDao.getBangDiaByTen(bangDia);
+			tableModel.addRow(new Object[] {
+					phieuThue.getSoPhieu(),
+					cmnd,
+					bangDia,
+					phieuThue.getNgayThue(),
+					phieuThue.getSoNgayMuon(),
+					phieuThue.getSoluong(),
+					phieuThue.getDonGia(),
+					((entity.BangDia) bd).getTinhTrang(),
+			});
+		}
+	}
+>>>>>>> 530a450164c67f72a14e903d974c06ac8d0b9522
 //	private PhieuThue revertFromTextfield() {
 //		// TODO Auto-generated method stub
 //		PhieuThue pt = new PhieuThue();

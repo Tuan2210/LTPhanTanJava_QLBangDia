@@ -87,7 +87,13 @@ public class KhachHangDao extends AbstractDao implements KhachHangServices, Seri
 		KhachHang n = em.find(KhachHang.class, cmnd);
 		em.getTransaction().commit();
 		
+<<<<<<< HEAD
 		return n;
 	}
+=======
+		return n; 
+	}
+
+>>>>>>> 530a450164c67f72a14e903d974c06ac8d0b9522
 
 }

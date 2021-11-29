@@ -10,7 +10,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+<<<<<<< HEAD
 import java.rmi.RemoteException;
+=======
+>>>>>>> 530a450164c67f72a14e903d974c06ac8d0b9522
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -197,6 +200,14 @@ public class FrmNhanVien extends JFrame implements ActionListener, MouseListener
 				}
 			}
 		});
+//		table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+//
+//			public void valueChanged(ListSelectionEvent e) {
+//				// TODO Auto-generated method stub
+//				int row = table.getSelectedRow();
+//				fillForm(row);
+//			}
+//		});
 
 		//		btnTrolai.addActionListener(this);
 		btnThem.addActionListener(this);
@@ -240,7 +251,11 @@ public class FrmNhanVien extends JFrame implements ActionListener, MouseListener
 				int del = JOptionPane.showConfirmDialog(null, "Bạn muốn xóa ?", "THÔNG BÁO", JOptionPane.YES_NO_OPTION);
 				int id = Integer.parseInt(txtMaNV.getText());
 				if(del==JOptionPane.YES_OPTION) {
+<<<<<<< HEAD
 					nhanVienDao.removeNhanVien(id);
+=======
+					FrmMain.nhanVienDao.removeNhanVien(id);
+>>>>>>> 530a450164c67f72a14e903d974c06ac8d0b9522
 					tableModelNV.setRowCount(0);
 					DocDuLieuVaoTableNhanVien();
 				}
@@ -257,7 +272,11 @@ public class FrmNhanVien extends JFrame implements ActionListener, MouseListener
 				String tenNV = txtTenNV.getText().trim();
 				String dienThoai = txtDienThoai.getText().trim();
 				String moTa = txtMoTa.getText().trim();
+<<<<<<< HEAD
 				nhanVienDao.updateNhanVien(maNV, tenNV, moTa, dienThoai);
+=======
+				FrmMain.nhanVienDao.updateNhanVien(maNV, tenNV, moTa, dienThoai);
+>>>>>>> 530a450164c67f72a14e903d974c06ac8d0b9522
 				tableModelNV.setRowCount(0);
 				DocDuLieuVaoTableNhanVien();
 			}
@@ -332,7 +351,11 @@ public class FrmNhanVien extends JFrame implements ActionListener, MouseListener
 	public void DocDuLieuVaoTableNhanVien() {
 		List<NhanVien> listNV = new ArrayList<>();
 		listNV.clear();
+<<<<<<< HEAD
 		listNV = nhanVienDao.getAllNhanVien();
+=======
+		listNV = FrmMain.nhanVienDao.getAllNhanVien();
+>>>>>>> 530a450164c67f72a14e903d974c06ac8d0b9522
 		
 		for(NhanVien n : listNV) {
 			tableModelNV.addRow(new Object[] {
@@ -374,4 +397,8 @@ public class FrmNhanVien extends JFrame implements ActionListener, MouseListener
 		
 	}
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 530a450164c67f72a14e903d974c06ac8d0b9522

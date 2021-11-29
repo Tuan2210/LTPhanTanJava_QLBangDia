@@ -214,7 +214,11 @@ public class FrmKhachHang extends JFrame implements ActionListener, MouseListene
 			String diachi = txtDiaChi.getText();
 			String socmnd = txtSoCMND.getText();
 			KhachHang kh = new KhachHang(hoten, gioitinh, dienthoai, diachi, socmnd);
+<<<<<<< HEAD
 			khachHangDao.add(kh);
+=======
+			FrmMain.khachHangDao.add(kh);
+>>>>>>> 530a450164c67f72a14e903d974c06ac8d0b9522
 			
 			tableModel.addRow(new Object[] {
 					kh.getHoTen(), kh.getGioiTinh(), kh.getDienThoai(), kh.getDiaChi(), kh.getSoCMND()
@@ -226,6 +230,7 @@ public class FrmKhachHang extends JFrame implements ActionListener, MouseListene
 				String socmnd = txtSoCMND.getText();
 				int del = JOptionPane.showConfirmDialog(null, "Bạn muốn xóa?", "THÔNG BÁO", JOptionPane.YES_NO_OPTION);
 				if(del==JOptionPane.YES_OPTION) {
+<<<<<<< HEAD
 					khachHangDao.removeKhachHang(socmnd);
 					tableModel.setRowCount(0);
 					try {
@@ -234,6 +239,11 @@ public class FrmKhachHang extends JFrame implements ActionListener, MouseListene
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
+=======
+					FrmMain.khachHangDao.removeKhachHang(socmnd);
+					tableModel.setRowCount(0);
+					DocDuLieuVaoTableKhachHang();
+>>>>>>> 530a450164c67f72a14e903d974c06ac8d0b9522
 				}
 			
 			}
@@ -252,6 +262,7 @@ public class FrmKhachHang extends JFrame implements ActionListener, MouseListene
 			String socmnd = txtSoCMND.getText();
 			KhachHang khUpdate = new KhachHang(hoten, gioitinh, dienthoai, diachi, socmnd);
 			
+<<<<<<< HEAD
 			khachHangDao.updateKhachHang(khUpdate);
 			tableModel.setRowCount(0);
 			try {
@@ -260,6 +271,11 @@ public class FrmKhachHang extends JFrame implements ActionListener, MouseListene
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+=======
+			FrmMain.khachHangDao.updateKhachHang(khUpdate);
+			tableModel.setRowCount(0);
+			DocDuLieuVaoTableKhachHang();
+>>>>>>> 530a450164c67f72a14e903d974c06ac8d0b9522
 		}
 		if(o.equals(btnTim)) {
 			if(txtNhap.getText() == null) {
@@ -268,7 +284,11 @@ public class FrmKhachHang extends JFrame implements ActionListener, MouseListene
 			else if (txtNhap.getText() != null) {
 				String pos = txtNhap.getText();
 				tableModel.setRowCount(0);
+<<<<<<< HEAD
 				List<KhachHang> listKH = khachHangDao.findKhachHang(pos);
+=======
+				List<KhachHang> listKH = FrmMain.khachHangDao.findKhachHang(pos);
+>>>>>>> 530a450164c67f72a14e903d974c06ac8d0b9522
 				
 				for(KhachHang h : listKH) {
 					tableModel.addRow(new Object[] {

@@ -98,4 +98,8 @@ public class KhachHang implements Serializable{
 		KhachHang other = (KhachHang) obj;
 		return Objects.equals(soCMND, other.soCMND);
 	}
+<<<<<<< HEAD
+=======
+
+>>>>>>> 530a450164c67f72a14e903d974c06ac8d0b9522
 }

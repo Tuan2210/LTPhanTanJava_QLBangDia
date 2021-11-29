@@ -11,16 +11,13 @@
 		<class>entity.PhieuThue</class>
 		<properties>
 
-			<property name="javax.persistence.jdbc.url"
-				value="jdbc:sqlserver://localhost:53376;databaseName=test5" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://localhost:1433;databaseName=QLChoThueBangDia" />
 			<property name="javax.persistence.jdbc.user" value="sa" />
-			<property name="javax.persistence.jdbc.password"
-				value="123456" />
-			<property name="javax.persistence.jdbc.driver"
-				value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+			<property name="javax.persistence.jdbc.password" value="sapassword" />
+			<property name="javax.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="true" />
-			<property name="hibernate.hbm2ddl.auto" value="none" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
 
 		</properties>
 	</persistence-unit>

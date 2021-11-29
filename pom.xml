@@ -20,6 +20,13 @@
 			<version>9.4.0.jre16</version>
 		</dependency>
 
+		<!--FontAwesome -->
+		<dependency>
+			<groupId>com.github.jiconfont</groupId>
+			<artifactId>jiconfont-font_awesome</artifactId>
+			<version>4.7.0.1</version>
+		</dependency>
+
 	</dependencies>
 
 </project>

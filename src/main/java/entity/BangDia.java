@@ -151,5 +151,7 @@ public class BangDia implements Serializable{
 		BangDia other = (BangDia) obj;
 		return maBD == other.maBD;
 	}
+
+	
 	
 }

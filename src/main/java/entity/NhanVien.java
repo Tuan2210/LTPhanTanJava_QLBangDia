@@ -65,4 +65,8 @@ public class NhanVien implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 530a450164c67f72a14e903d974c06ac8d0b9522

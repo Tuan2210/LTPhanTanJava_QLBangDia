@@ -55,7 +55,11 @@ public class FrmBangDia extends JFrame implements ActionListener, MouseListener 
 		});
 	}
 
+<<<<<<< HEAD
 	public FrmBangDia() throws RemoteException{
+=======
+	public FrmBangDia(){
+>>>>>>> 530a450164c67f72a14e903d974c06ac8d0b9522
 		super("THÔNG TIN CD");
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setSize(1120, 650);
@@ -340,15 +344,20 @@ public class FrmBangDia extends JFrame implements ActionListener, MouseListener 
 			String ghiChu = txtGhiChu.getText();
 			BangDia bd=new BangDia(ten, theLoai, tinhTrang, soLuong, soNgayMuon, donGia, hangSX, ghiChu);
 			
+<<<<<<< HEAD
 			
 			bangDiaDao.add(bd);
 			
 			
+=======
+			FrmMain.bangDiaDao.add(bd);
+>>>>>>> 530a450164c67f72a14e903d974c06ac8d0b9522
 			tableModelBD.addRow(new Object[] {bd.getMaBD(), bd.getTenBD(), bd.getTheLoai(), bd.getTinhTrang(), bd.getSoLuong(), bd.getSoNgayMuon(), bd.getDonGia(), bd.getHangSX(), bd.getGhiChu()});
 		}
 
 		if(o.equals(btnXoa)) {
 			int ma = Integer.parseInt(txtMa.getText());
+<<<<<<< HEAD
 			bangDiaDao.removeBangDia(ma);
 			tableModelBD.setRowCount(0);
 			try {
@@ -357,23 +366,37 @@ public class FrmBangDia extends JFrame implements ActionListener, MouseListener 
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+=======
+			FrmMain.bangDiaDao.removeBangDia(ma);
+			tableModelBD.setRowCount(0);
+			DocDuLieuVaoTableBangDia();
+>>>>>>> 530a450164c67f72a14e903d974c06ac8d0b9522
 		}
 		if(o.equals(btnXoaTrang)) {
 			xoaTrang();
 		}
 		if(o.equals(btnLuu)) {		
 			tableModelBD.setRowCount(0);
+<<<<<<< HEAD
 			try {
 				DocDuLieuVaoTableBangDia();
 			} catch (RemoteException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+=======
+			tableModelBD.setRowCount(0);
+			DocDuLieuVaoTableBangDia();
+>>>>>>> 530a450164c67f72a14e903d974c06ac8d0b9522
 		}
 		if(o.equals(btnTim)) {
 			String pos = txtTim.getText();
 			if(pos != null && pos.trim().length()>0) {
+<<<<<<< HEAD
 				List<BangDia> list = bangDiaDao.findBangDia(pos);
+=======
+				List<BangDia> list = FrmMain.bangDiaDao.findBangDia(pos);
+>>>>>>> 530a450164c67f72a14e903d974c06ac8d0b9522
 				tableModelBD.setRowCount(0);
 				for(BangDia d : list) {
 					tableModelBD.addRow(new Object[] {d.getMaBD(), d.getTenBD(), d.getTheLoai(), d.getTinhTrang(), d.getSoLuong(), d.getSoNgayMuon(), d.getDonGia(), d.getHangSX(), d.getGhiChu()});
@@ -395,6 +418,7 @@ public class FrmBangDia extends JFrame implements ActionListener, MouseListener 
 			String ghiChuCapNhat = txtGhiChu.getText();
 			BangDia bdCapNhat = new BangDia(maCapNhat, tenCapNhat, theLoaiCapNhat, tinhTrangCapNhat, soLuongCapNhat, soNgayMuonCapNhat, donGiaCapNhat, hangSXCapNhat, ghiChuCapNhat);
 			
+<<<<<<< HEAD
 			bangDiaDao.updateBangDia(bdCapNhat);
 			tableModelBD.setRowCount(0);
 			try {
@@ -403,6 +427,11 @@ public class FrmBangDia extends JFrame implements ActionListener, MouseListener 
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+=======
+			FrmMain.bangDiaDao.updateBangDia(bdCapNhat);
+			tableModelBD.setRowCount(0);
+			DocDuLieuVaoTableBangDia();
+>>>>>>> 530a450164c67f72a14e903d974c06ac8d0b9522
 		}
 	}
 

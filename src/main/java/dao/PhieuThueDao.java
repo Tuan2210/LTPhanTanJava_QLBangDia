@@ -1,12 +1,19 @@
 package dao;
 
+<<<<<<< HEAD
 import java.io.Serializable;
 import java.rmi.RemoteException;
+=======
+>>>>>>> 530a450164c67f72a14e903d974c06ac8d0b9522
 import java.util.List;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 
+<<<<<<< HEAD
+=======
+import entity.KhachHang;
+>>>>>>> 530a450164c67f72a14e903d974c06ac8d0b9522
 import entity.NhanVien;
 import entity.PhieuThue;
 import service.PhieuThueServices;
@@ -69,6 +76,7 @@ public class PhieuThueDao extends AbstractDao implements PhieuThueServices, Seri
 		em.getTransaction().commit();
 		
 		return l;
+<<<<<<< HEAD
 	}
 	
 	@Override
@@ -106,6 +114,8 @@ public class PhieuThueDao extends AbstractDao implements PhieuThueServices, Seri
 		em.getTransaction().commit();
 		
 		return l;
+=======
+>>>>>>> 530a450164c67f72a14e903d974c06ac8d0b9522
 	}
 
 }
