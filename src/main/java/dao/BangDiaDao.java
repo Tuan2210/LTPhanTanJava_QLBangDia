@@ -11,7 +11,10 @@ import entity.BangDia;
 import service.BangDiaServices;
 
 public class BangDiaDao extends AbstractDao implements BangDiaServices, Serializable {
+<<<<<<< HEAD
 	
+=======
+>>>>>>> 8ab78b7df95e5ab02eed23b0958127c208b42927
 	/**
 	 * 
 	 */
@@ -33,18 +36,23 @@ public class BangDiaDao extends AbstractDao implements BangDiaServices, Serializ
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<BangDia> getAllBangDia() {
-		
+
 		em.getTransaction().begin();
 		String statement = "SELECT * FROM BangDia";
 		Query query = em.createNativeQuery(statement, BangDia.class);
 		List<BangDia> list = query.getResultList();
 		em.getTransaction().commit();
-		
+
 		return list;
 	}
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> 8ab78b7df95e5ab02eed23b0958127c208b42927
 	@Override 
 	public void removeBangDia(int id) {
 		try {
@@ -57,7 +65,11 @@ public class BangDiaDao extends AbstractDao implements BangDiaServices, Serializ
 			em.getTransaction().rollback();
 		}
 	}
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> 8ab78b7df95e5ab02eed23b0958127c208b42927
 	@Override
 	public void updateBangDia(BangDia b) {
 		try {
@@ -69,7 +81,12 @@ public class BangDiaDao extends AbstractDao implements BangDiaServices, Serializ
 			em.getTransaction().rollback();
 		}
 	}
+<<<<<<< HEAD
 	
+=======
+
+	@SuppressWarnings("unchecked")
+>>>>>>> 8ab78b7df95e5ab02eed23b0958127c208b42927
 	@Override
 	public List<BangDia> findBangDia(String ten) {
 		em.getTransaction().begin();
@@ -77,11 +94,18 @@ public class BangDiaDao extends AbstractDao implements BangDiaServices, Serializ
 		Query query = em.createNativeQuery(statement, BangDia.class);
 		List<BangDia> b = query.getResultList();
 		em.getTransaction().commit();
+<<<<<<< HEAD
 		
 		return b;
 	}
 	
 	@Override
+=======
+
+		return b;
+	}
+
+>>>>>>> 8ab78b7df95e5ab02eed23b0958127c208b42927
 	public BangDia getBangDiaByTen(String ten) {
 		em.getTransaction().begin();
 		String statement = "SELECT * FROM BangDia WHERE tenBD LIKE " +  "'%" + ten + "%'"  ;
@@ -90,4 +114,10 @@ public class BangDiaDao extends AbstractDao implements BangDiaServices, Serializ
 		em.getTransaction().commit();
 		return bd;
 	}
+<<<<<<< HEAD
 }
+=======
+}
+
+
+>>>>>>> 8ab78b7df95e5ab02eed23b0958127c208b42927

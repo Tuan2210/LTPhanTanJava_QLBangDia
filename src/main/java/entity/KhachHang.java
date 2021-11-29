@@ -21,12 +21,16 @@ public class KhachHang implements Serializable{
 	private String diaChi;
 	@OneToMany(mappedBy = "CMND", cascade = CascadeType.ALL)
 	private Set<PhieuThue> phieuThue = new HashSet<>();
-	
+
 	public KhachHang() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> 8ab78b7df95e5ab02eed23b0958127c208b42927
 	public KhachHang(String hoTen, String gioiTinh, String dienThoai, String diaChi, String soCMND) {
 		super();
 		this.hoTen = hoTen;
@@ -40,8 +44,8 @@ public class KhachHang implements Serializable{
 		super();
 		this.soCMND = soCMND;
 	}
-	
-	
+
+
 	public String getHoTen() {
 		return hoTen;
 	}

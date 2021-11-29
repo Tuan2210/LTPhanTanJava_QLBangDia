@@ -15,7 +15,10 @@ public interface PhieuThueServices extends Remote{
 	public List<String> getTenBangDia() throws RemoteException;
 	public List<PhieuThue> getPhieuThueByCMND(String cmnd) throws RemoteException;
 	public List<String> getTenBangDiaByCMND(String cmnd) throws RemoteException;
+<<<<<<< HEAD
 	public List<String> getCMNDByPhieuThueID() throws RemoteException;
 	public List<Integer> getMaNVByPhieuThueID() throws RemoteException;
 	public void removePhieuThueByID(int soPhieu) throws RemoteException;
+=======
+>>>>>>> 8ab78b7df95e5ab02eed23b0958127c208b42927
 }

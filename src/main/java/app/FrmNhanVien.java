@@ -2,10 +2,8 @@ package app;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -18,7 +16,6 @@ import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -27,18 +24,20 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
-import javax.swing.border.TitledBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
+<<<<<<< HEAD
 import app.FrmMain;
 import dao.BangDiaDao;
 import dao.KhachHangDao;
 import dao.NhanVienDao;
 import entity.BangDia;
+=======
+import dao.NhanVienDao;
+>>>>>>> 8ab78b7df95e5ab02eed23b0958127c208b42927
 import entity.NhanVien;
-import app.FrmBangDia;
 
 
 public class FrmNhanVien extends JFrame implements ActionListener, MouseListener {
@@ -52,9 +51,14 @@ public class FrmNhanVien extends JFrame implements ActionListener, MouseListener
 	private JTextField txtMessage;
 	private JButton btnThem , btnXoaTrang , btnCapNhat, btnXoa , btnTim, btnLuu;
 	private JLabel lblTieuDe , lblMaNV, lblTenNV, lblDienThoai, lblMoTa;
+<<<<<<< HEAD
 	NhanVienDao nhanVienDao = new NhanVienDao(FrmMain.factory);
 	//	private ListNhanVien listNhanVien;
 	//	private NhanVienTableModel tableModel;
+=======
+
+	NhanVienDao nhanVienDao = new NhanVienDao(FrmMain.factory);
+>>>>>>> 8ab78b7df95e5ab02eed23b0958127c208b42927
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -69,18 +73,21 @@ public class FrmNhanVien extends JFrame implements ActionListener, MouseListener
 	}
 
 	public FrmNhanVien() throws SQLException, RemoteException {
+<<<<<<< HEAD
 		// TODO Auto-generated constructor stub
+=======
+>>>>>>> 8ab78b7df95e5ab02eed23b0958127c208b42927
 		setTitle("THÔNG TIN NHÂN VIÊN");
 		setSize(900,600);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		BuildGUI();
-		//		setVisible(true);
 
 	}
 	public void BuildGUI() throws SQLException, RemoteException  {
 		JPanel pNorth = new JPanel();
 
+		@SuppressWarnings("unused")
 		Box b,b0,b1,b2,b3,b4,b5,b6,b7;
 		b = Box.createVerticalBox();
 		b.add(Box.createVerticalStrut(5));
@@ -118,10 +125,6 @@ public class FrmNhanVien extends JFrame implements ActionListener, MouseListener
 		b.add(Box.createHorizontalStrut(600));
 		b.add(Box.createVerticalStrut(5));
 
-		//		b0.add(btnTrolai = new JButton("<--"));
-		//		b0.add(Box.createHorizontalStrut(300));
-		//		b0.add(Box.createVerticalStrut(4));
-		//		btnTrolai.setSize(20,5);
 		b1.add(lblTieuDe = new JLabel("THÔNG TIN NHÂN VIÊN"));
 		lblTieuDe.setFont(new Font("Time New Romal", Font.BOLD, 30));
 		lblTieuDe.setForeground(Color.DARK_GRAY);
@@ -154,13 +157,12 @@ public class FrmNhanVien extends JFrame implements ActionListener, MouseListener
 		lblMaNV.setPreferredSize(lblMoTa.getPreferredSize());
 		lblTenNV.setPreferredSize(lblMoTa.getPreferredSize());
 		lblDienThoai.setPreferredSize(lblMoTa.getPreferredSize());
-		
+
 		String tenCot[] = {"ID", "Ten nhan vien", "So dien thoai", "Mo ta"};
 		tableModelNV = new DefaultTableModel(tenCot, 0);
 		table = new JTable(tableModelNV);
-//		table.setPreferredSize(new Dimension(680, 250));
 		DocDuLieuVaoTableNhanVien();
-		
+
 
 		add(new JScrollPane(table));
 		table.setRowHeight(25);
@@ -176,19 +178,14 @@ public class FrmNhanVien extends JFrame implements ActionListener, MouseListener
 		pnSouth.createVolatileImage(120, 40);
 		pnSouth.setBorder(BorderFactory.createTitledBorder(borderVien, ""));
 
-		//		listNhanVien = new ListNhanVien();
-		//		Database db = new Database();
-		//		Database.getInstance().connect();
-		//		listNhanVien.napDuLieuTuFile();
-
-//		updateTableData();
-
 		table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 
 			public void valueChanged(ListSelectionEvent e) {
-				// TODO Auto-generated method stub
 				int row = table.getSelectedRow();
+<<<<<<< HEAD
 //				fillForm(row);
+=======
+>>>>>>> 8ab78b7df95e5ab02eed23b0958127c208b42927
 				if(row != -1) {
 					txtMaNV.setText(table.getValueAt(row, 0).toString());
 					txtTenNV.setText(table.getValueAt(row, 1).toString());
@@ -198,7 +195,6 @@ public class FrmNhanVien extends JFrame implements ActionListener, MouseListener
 			}
 		});
 
-		//		btnTrolai.addActionListener(this);
 		btnThem.addActionListener(this);
 		btnXoaTrang.addActionListener(this);
 		btnXoa.addActionListener(this);
@@ -208,17 +204,19 @@ public class FrmNhanVien extends JFrame implements ActionListener, MouseListener
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		Object o = e.getSource();
-		//		if (o.equals(btnTrolai)) {
-		//			new GiaoDienChinh().setVisible(true);
-		//		}
+
 		if (o.equals(btnThem)) {
 			if (validData()) {
 				NhanVien n = revertFromTextfield();
+<<<<<<< HEAD
 				
 				nhanVienDao.add(n);
 				
+=======
+
+				nhanVienDao.add(n);
+>>>>>>> 8ab78b7df95e5ab02eed23b0958127c208b42927
 				tableModelNV.addRow(new Object[] {
 						n.getMaNV(), n.getTenNV(), n.getDienThoai(), n.getMoTa()
 				});
@@ -232,11 +230,13 @@ public class FrmNhanVien extends JFrame implements ActionListener, MouseListener
 		if (o.equals(btnXoaTrang)) {
 			emptyTextfields();
 			DocDuLieuVaoTableNhanVien();
+<<<<<<< HEAD
 //			updateTableData();
+=======
+>>>>>>> 8ab78b7df95e5ab02eed23b0958127c208b42927
 		}
 		if (o.equals(btnXoa)) {
 			if (table.getSelectedRow() != -1) {
-				int index = table.getSelectedRow();
 				int del = JOptionPane.showConfirmDialog(null, "Bạn muốn xóa ?", "THÔNG BÁO", JOptionPane.YES_NO_OPTION);
 				int id = Integer.parseInt(txtMaNV.getText());
 				if(del==JOptionPane.YES_OPTION) {
@@ -248,6 +248,7 @@ public class FrmNhanVien extends JFrame implements ActionListener, MouseListener
 
 		}
 		if (o.equals(btnTim)) {
+			@SuppressWarnings("unused")
 			String maNV = JOptionPane.showInputDialog("Nhập mà nhân viên: " );
 
 		}
@@ -270,37 +271,25 @@ public class FrmNhanVien extends JFrame implements ActionListener, MouseListener
 		txtMoTa.setText("");
 		txtMaNV.requestFocus();
 	}
-	private void showMessage(String message, JTextField txt) {
-		txtMessage.setText(message);
-		txt.requestFocus();
 
-	}
 	private NhanVien revertFromTextfield() {
-//		int maNV = Integer.parseInt(txtMaNV.getText());
 		String tenNV = txtTenNV.getText().trim();
 		String dienThoai = txtDienThoai.getText().trim();
 		String moTa = txtMoTa.getText().trim();
 		return new NhanVien(tenNV, dienThoai, moTa);
 
 	}
+	@SuppressWarnings("unused")
 	private boolean validData() {
 		String maNV = txtMaNV.getText().trim();
 		String tenNV = txtTenNV.getText().trim();
 		String dienThoai = txtDienThoai.getText().trim();
 		String moTa = txtMoTa.getText().trim();
 
-		//		if (!(!maNV.equals("") && maNV.matches("[0-9]+"))) {
-		//			showMessage("Error: mã nhân viên", txtMaNV);
-		//			return false;
-		//		}
-		//		if (!(!tenNV.equals("") && tenNV.matches("[a-zA-Z]+"))) {
-		//			showMessage("Error: tên nhân viên", txtTenNV);
-		//			return false;
-		//		}
-
 		return true;
 	}
 
+<<<<<<< HEAD
 	//	private void updateTableData() {
 	//		// TODO Auto-generated method stub
 	//		tableModel = new NhanVienTableModel(listNhanVien.getListNhanVien());
@@ -329,11 +318,16 @@ public class FrmNhanVien extends JFrame implements ActionListener, MouseListener
 	//			});
 	//		}
 	
+=======
+>>>>>>> 8ab78b7df95e5ab02eed23b0958127c208b42927
 	public void DocDuLieuVaoTableNhanVien() {
 		List<NhanVien> listNV = new ArrayList<>();
 		listNV.clear();
 		listNV = nhanVienDao.getAllNhanVien();
+<<<<<<< HEAD
 		
+=======
+>>>>>>> 8ab78b7df95e5ab02eed23b0958127c208b42927
 		for(NhanVien n : listNV) {
 			tableModelNV.addRow(new Object[] {
 					n.getMaNV(), n.getTenNV(), n.getDienThoai(), n.getMoTa()
@@ -353,25 +347,41 @@ public class FrmNhanVien extends JFrame implements ActionListener, MouseListener
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
+<<<<<<< HEAD
 		
+=======
+
+>>>>>>> 8ab78b7df95e5ab02eed23b0958127c208b42927
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
+<<<<<<< HEAD
 		
+=======
+
+>>>>>>> 8ab78b7df95e5ab02eed23b0958127c208b42927
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
+<<<<<<< HEAD
 		
+=======
+
+>>>>>>> 8ab78b7df95e5ab02eed23b0958127c208b42927
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
+<<<<<<< HEAD
 		
+=======
+
+>>>>>>> 8ab78b7df95e5ab02eed23b0958127c208b42927
 	}
 
 }
