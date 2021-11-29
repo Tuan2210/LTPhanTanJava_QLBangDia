@@ -8,11 +8,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 
 import entity.KhachHang;
-import entity.NhanVien;
 import service.KhachHangServices;
 
 public class KhachHangDao extends AbstractDao implements KhachHangServices, Serializable {
-
 	/**
 	 * 
 	 */
@@ -34,6 +32,7 @@ public class KhachHangDao extends AbstractDao implements KhachHangServices, Seri
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<KhachHang> getAllKhachHang() {
 		em.getTransaction().begin();
@@ -41,10 +40,10 @@ public class KhachHangDao extends AbstractDao implements KhachHangServices, Seri
 		Query query = em.createNativeQuery(statement, KhachHang.class);
 		List<KhachHang> list = query.getResultList();
 		em.getTransaction().commit();
-		
+
 		return list;
 	}
-	
+
 	@Override
 	public void removeKhachHang(String cmnd) {
 		try {
@@ -57,7 +56,7 @@ public class KhachHangDao extends AbstractDao implements KhachHangServices, Seri
 			em.getTransaction().rollback();
 		}
 	}
-	
+
 	@Override
 	public void updateKhachHang(KhachHang k) {
 		try {
@@ -69,7 +68,8 @@ public class KhachHangDao extends AbstractDao implements KhachHangServices, Seri
 			em.getTransaction().rollback();
 		}
 	}
-	
+
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<KhachHang> findKhachHang(String cmnd) {
 		em.getTransaction().begin();
@@ -77,7 +77,7 @@ public class KhachHangDao extends AbstractDao implements KhachHangServices, Seri
 		Query query = em.createNativeQuery(statement, KhachHang.class);
 		List<KhachHang> l = query.getResultList();
 		em.getTransaction().commit();
-		
+
 		return l;
 	}
 
@@ -86,14 +86,9 @@ public class KhachHangDao extends AbstractDao implements KhachHangServices, Seri
 		em.getTransaction().begin();
 		KhachHang n = em.find(KhachHang.class, cmnd);
 		em.getTransaction().commit();
-		
-<<<<<<< HEAD
+
 		return n;
 	}
-=======
-		return n; 
-	}
 
->>>>>>> 530a450164c67f72a14e903d974c06ac8d0b9522
 
 }

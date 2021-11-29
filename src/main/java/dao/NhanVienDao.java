@@ -11,7 +11,6 @@ import entity.NhanVien;
 import service.NhanVienServices;
 
 public class NhanVienDao extends AbstractDao implements NhanVienServices, Serializable{
-
 	/**
 	 * 
 	 */
@@ -32,6 +31,7 @@ public class NhanVienDao extends AbstractDao implements NhanVienServices, Serial
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<NhanVien> getAllNhanVien() {
 		em.getTransaction().begin();
@@ -42,7 +42,7 @@ public class NhanVienDao extends AbstractDao implements NhanVienServices, Serial
 
 		return list;
 	}
-	
+
 	@Override
 	public void removeNhanVien(int id) {
 		try {
@@ -56,18 +56,6 @@ public class NhanVienDao extends AbstractDao implements NhanVienServices, Serial
 		}
 	}
 
-//	@Override
-//	public void updateNhanVien(NhanVien n) {
-//		try {
-//			em.getTransaction().begin();
-//			em.merge(n);
-//			em.getTransaction().commit();
-//		} catch(Exception e) {
-//			e.printStackTrace();
-//			em.getTransaction().rollback();
-//		}
-//	}
-	
 	@Override
 	public void updateNhanVien(int id, String ten, String moTa, String dienThoai) {
 		em.getTransaction().begin();
@@ -77,6 +65,7 @@ public class NhanVienDao extends AbstractDao implements NhanVienServices, Serial
 		em.getTransaction().commit();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<NhanVien> findNhanVien(int id) {
 		em.getTransaction().begin();
@@ -84,7 +73,7 @@ public class NhanVienDao extends AbstractDao implements NhanVienServices, Serial
 		Query query = em.createNativeQuery(statement, NhanVien.class);
 		List<NhanVien> l = query.getResultList();
 		em.getTransaction().commit();
-		
+
 		return l;
 	}
 
@@ -93,7 +82,7 @@ public class NhanVienDao extends AbstractDao implements NhanVienServices, Serial
 		em.getTransaction().begin();
 		NhanVien n = em.find(NhanVien.class, id);
 		em.getTransaction().commit();
-		
+
 		return n;
 	}
 }

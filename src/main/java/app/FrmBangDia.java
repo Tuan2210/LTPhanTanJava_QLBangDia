@@ -1,6 +1,4 @@
 package app;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
@@ -8,7 +6,6 @@ import javax.swing.table.DefaultTableModel;
 
 import dao.BangDiaDao;
 import entity.BangDia;
-import service.BangDiaServices;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -16,14 +13,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.rmi.RemoteException;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
-
-/*
- *NgÆ°ï¿½?i viáº¿t: ï¿½?inh Quang Tuáº¥n - MSSV: 19468641 - NhĂ³m 13
- *NgĂ y viáº¿t: 11/5/2021 
- * */
 
 public class FrmBangDia extends JFrame implements ActionListener, MouseListener {
 
@@ -32,16 +22,17 @@ public class FrmBangDia extends JFrame implements ActionListener, MouseListener 
 	private JTextField txtMa, txtTen, txtTheLoai, txtTinhTrang, txtSoLuong, txtSoNgayMuon, txtDonGia, txtHangSX, txtTim;
 	private JTextArea txtGhiChu;
 	private Border borderVien;
+	@SuppressWarnings("unused")
 	private JScrollPane scrlpaneGhiChu, scrlPane;
 	private JSplitPane split1, split2;
 	private JButton btnThem, btnXoa, btnCapNhat, btnLuu, btnTim, btnXoaTrang;
 	//	private QLBangDia listBD;
 	private JTable tableBD;
+	@SuppressWarnings("unused")
 	private DefaultTableModel tableModelBD, tableModel;
+	@SuppressWarnings("unused")
 	private String maCanSua;
 	BangDiaDao bangDiaDao = new BangDiaDao(FrmMain.factory);
-	
-	//	private ArrayList<BangDia> listData;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -55,17 +46,12 @@ public class FrmBangDia extends JFrame implements ActionListener, MouseListener 
 		});
 	}
 
-<<<<<<< HEAD
 	public FrmBangDia() throws RemoteException{
-=======
-	public FrmBangDia(){
->>>>>>> 530a450164c67f72a14e903d974c06ac8d0b9522
 		super("THÔNG TIN CD");
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setSize(1120, 650);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel(new BorderLayout());
-		//contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -81,14 +67,13 @@ public class FrmBangDia extends JFrame implements ActionListener, MouseListener 
 		pNorth.add(lbltITitle);
 		contentPane.add(pNorth, BorderLayout.NORTH);
 		////////////////////////////////////////////////////
-		split1=new JSplitPane(JSplitPane.VERTICAL_SPLIT);			//chia Ä‘Ă´i vĂ¹ng center chĂ­nh
+		split1=new JSplitPane(JSplitPane.VERTICAL_SPLIT);			
 		split1.setPreferredSize(new Dimension(900, 600));
 
-		JPanel pTop=new JPanel(new BorderLayout());								//top nhï¿½?
+		JPanel pTop=new JPanel(new BorderLayout());								
 		borderVien=BorderFactory.createLineBorder(Color.ORANGE);
-		split2=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);			// chia Ä‘Ă´i vĂ¹ng tt chi tiáº¿t
+		split2=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);			
 		split2.setPreferredSize(new Dimension(15, 3));
-		//split2.setPreferredSize(new Dimension(15, 5));
 		pTop.setBorder(BorderFactory.createTitledBorder(borderVien, "THÔNG TIN CHI TIẾT"));
 
 		Box b,b1,b2,b3,b4,b5,b6,b7,b8,b9,bA,bB,bC;
@@ -97,7 +82,6 @@ public class FrmBangDia extends JFrame implements ActionListener, MouseListener 
 		bB=Box.createVerticalBox();
 		bC=Box.createVerticalBox();
 		bC.setAlignmentX(Component.CENTER_ALIGNMENT);
-		//bC.setAlignmentY(Component.TOP_ALIGNMENT);
 		b1=Box.createHorizontalBox();
 		b2=Box.createHorizontalBox();
 		b3=Box.createHorizontalBox();
@@ -108,28 +92,28 @@ public class FrmBangDia extends JFrame implements ActionListener, MouseListener 
 		b8=Box.createHorizontalBox();
 		b9=Box.createHorizontalBox();
 
-		JLabel lblMa=new JLabel("Mã băng đĩa: ");			//mĂ£
+		JLabel lblMa=new JLabel("Mã băng đĩa: ");			
 		b1.add(lblMa);
 		b1.add(Box.createHorizontalStrut(16));
 		b1.add(txtMa=new JTextField(10));
 		b1.add(Box.createHorizontalStrut(5));
 		bA.add(b1);
 		bA.add(Box.createVerticalStrut(10));
-		JLabel lblTen=new JLabel("Tên băng đĩa: ");			//tĂªn
+		JLabel lblTen=new JLabel("Tên băng đĩa: ");			
 		b2.add(lblTen);
 		b2.add(Box.createHorizontalStrut(12));
 		b2.add(txtTen=new JTextField(15));
 		b2.add(Box.createHorizontalStrut(5));
 		bA.add(b2);
 		bA.add(Box.createVerticalStrut(10));
-		JLabel lblTheLoai=new JLabel("Thể loại: ");			//thá»ƒ loáº¡i
+		JLabel lblTheLoai=new JLabel("Thể loại: ");			
 		b3.add(lblTheLoai);
 		b3.add(Box.createHorizontalStrut(40));
 		b3.add(txtTheLoai=new JTextField(15));
 		b3.add(Box.createHorizontalStrut(5));
 		bA.add(b3);
 		bA.add(Box.createVerticalStrut(10));
-		JLabel lblTinhTrang=new JLabel("Tình trạng: ");		//tĂ¬nh tráº¡ng
+		JLabel lblTinhTrang=new JLabel("Tình trạng: ");		
 		b4.add(lblTinhTrang);
 		b4.add(Box.createHorizontalStrut(27));
 		b4.add(txtTinhTrang=new JTextField(15));
@@ -137,15 +121,14 @@ public class FrmBangDia extends JFrame implements ActionListener, MouseListener 
 		bA.add(b4);
 		bA.add(Box.createVerticalStrut(10));
 		////
-		JLabel lblSoLuong=new JLabel("Số lượng: ");			//sá»‘ lÆ°á»£ng
+		JLabel lblSoLuong=new JLabel("Số lượng: ");			
 		b5.add(lblSoLuong);
 		b5.add(Box.createHorizontalStrut(76));
 		b5.add(txtSoLuong=new JTextField(30));
 		b5.add(Box.createHorizontalStrut(5));
 		bB.add(b5);
 		bB.add(Box.createVerticalStrut(10));
-		JLabel lblSoNgayMuon=new JLabel("Số ngày mượn: "); //sá»‘ ngĂ y Ä‘c mÆ°á»£n
-		//lblSoNgayMuon.setPreferredSize(new Dimension(40, 25));
+		JLabel lblSoNgayMuon=new JLabel("Số ngày mượn: "); 
 		b6.add(lblSoNgayMuon);
 		b6.add(Box.createHorizontalStrut(10));
 		b6.add(txtSoNgayMuon=new JTextField(10));
@@ -230,52 +213,21 @@ public class FrmBangDia extends JFrame implements ActionListener, MouseListener 
 		contentPane.add(split1, BorderLayout.CENTER);
 		////////////////////////////////////////////////
 		////////////////////////////////////////////////
-		JPanel pSouth = new JPanel(new BorderLayout());						//bottom nhï¿½? pSouth
+		JPanel pSouth = new JPanel(new BorderLayout());						
 		pSouth.setPreferredSize(new Dimension(0, 40));
-
-		//		listBD=new QLBangDia();
-		//		Database db=new Database();
-		//ArrayList<ArrayList<String>> data = new ArrayList<>();
-		//		Database.getInstance().connect();
-		//		listData = new Database().getAllFromSQL();
-
 
 		String []tenCot = {"Mã băng đĩa","Tên băng đĩa","Thể loại","Tình trạng","Số lượng","Số ngày mượn","Đơn giá","Hãng sản xuất","Ghi chú"};
 		tableModelBD = new DefaultTableModel(tenCot, 0);
 		tableBD = new JTable(tableModelBD);
 		tableBD.setPreferredSize(new Dimension(680, 250));
-		//tableBD.getColumnModel().getColumn(4).setCellEditor(null);
 		tableBD.setRowHeight(15);
-		//tableBD.setVisible(true);
-		//pCenter.add(tableBD);
 		DocDuLieuVaoTableBangDia();
 
 		pSouth.add(new JScrollPane(tableBD),BorderLayout.CENTER);
 		pSouth.setPreferredSize(new Dimension(100, 250));
-		//pSouth.setPreferredSize(new Dimension(WIDTH, 250));
 		contentPane.add(pSouth, BorderLayout.SOUTH);
 
-		//listBD = db.getAllFromSQL();
 
-		//try {
-		//listBD = (QLBangDia)db.getAllFromSQL();
-		//Database.con= (Connection) db.getAllFromSQL();
-		//tableBD = db.getAllFromSQL();
-		//}catch (Exception e) {
-		// TODO: handle exception
-		//JOptionPane.showMessageDialog(null, "KhĂ´ng hiá»‡n dá»¯ liá»‡u lĂªn báº£ng ");
-		//}
-		//((DefaultTableModel) tableBD.getModel()).setDataVector(data, tenCot);;
-		//		tableModel = (DefaultTableModel) tableBD.getModel();
-
-		//		try {
-		//			dsBD = (QLBangDia) l.loadFile("data/BangDia.txt");
-		//		}catch(Exception e) {
-		//			JOptionPane.showMessageDialog(null, "KhĂ´ng tĂ¬m tháº¥y file");
-		//		}
-
-		//		LayDuLieuTuSQLChoModel();
-		
 		btnThem.addActionListener(this);
 		btnXoa.addActionListener(this);
 		btnXoaTrang.addActionListener(this);
@@ -301,37 +253,8 @@ public class FrmBangDia extends JFrame implements ActionListener, MouseListener 
 		txtMa.selectAll();
 	}
 
-	//	private void LayDuLieuTuSQLChoModel() {
-	//		for(BangDia bd : listData) {
-	//			tableModelBD.addRow(new Object[] {
-	//					//i++,  // lĂ  sá»‘ thá»© tá»± cá»§a table
-	//					bd.getMaBD(), bd.getTenBD(), bd.getTheLoai(),
-	//					bd.getTinhTrang(), bd.getSoLuong(), bd.getSoNgayMuon(),
-	//					bd.getDonGia(), bd.getHangSX(), bd.getGhiChu()
-	//			});
-	//		}
-	//	}
-
 	public void actionPerformed(ActionEvent e){
-		// TODO Auto-generated method stub
-		
 		Object o = e.getSource();
-
-		//		String ma = txtMa.getText();
-		//		String ten = txtTen.getText();
-		//		String theLoai = txtTheLoai.getText();
-		//		String tinhTrang = txtTinhTrang.getText();
-		//		String sl = txtSoLuong.getText();
-		//		String snm = txtSoNgayMuon.getText();
-		//		String dg = txtDonGia.getText();
-		//		String hangSX = txtHangSX.getText();
-		//		String ghiChu = txtGhiChu.getText();
-
-		//		int soLuong = Integer.parseInt(sl);
-		//		int soNgayMuon = Integer.parseInt(snm);
-		//		double donGia = Double.parseDouble(dg);
-
-//		int ma = Integer.parseInt(txtMa.getText());
 
 		if(o.equals(btnThem)) {
 			String ten = txtTen.getText();
@@ -343,65 +266,41 @@ public class FrmBangDia extends JFrame implements ActionListener, MouseListener 
 			String hangSX = txtHangSX.getText();
 			String ghiChu = txtGhiChu.getText();
 			BangDia bd=new BangDia(ten, theLoai, tinhTrang, soLuong, soNgayMuon, donGia, hangSX, ghiChu);
-			
-<<<<<<< HEAD
-			
+
 			bangDiaDao.add(bd);
-			
-			
-=======
-			FrmMain.bangDiaDao.add(bd);
->>>>>>> 530a450164c67f72a14e903d974c06ac8d0b9522
 			tableModelBD.addRow(new Object[] {bd.getMaBD(), bd.getTenBD(), bd.getTheLoai(), bd.getTinhTrang(), bd.getSoLuong(), bd.getSoNgayMuon(), bd.getDonGia(), bd.getHangSX(), bd.getGhiChu()});
 		}
 
 		if(o.equals(btnXoa)) {
 			int ma = Integer.parseInt(txtMa.getText());
-<<<<<<< HEAD
 			bangDiaDao.removeBangDia(ma);
 			tableModelBD.setRowCount(0);
 			try {
 				DocDuLieuVaoTableBangDia();
 			} catch (RemoteException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-=======
-			FrmMain.bangDiaDao.removeBangDia(ma);
-			tableModelBD.setRowCount(0);
-			DocDuLieuVaoTableBangDia();
->>>>>>> 530a450164c67f72a14e903d974c06ac8d0b9522
 		}
 		if(o.equals(btnXoaTrang)) {
 			xoaTrang();
 		}
 		if(o.equals(btnLuu)) {		
 			tableModelBD.setRowCount(0);
-<<<<<<< HEAD
 			try {
 				DocDuLieuVaoTableBangDia();
 			} catch (RemoteException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-=======
-			tableModelBD.setRowCount(0);
-			DocDuLieuVaoTableBangDia();
->>>>>>> 530a450164c67f72a14e903d974c06ac8d0b9522
 		}
 		if(o.equals(btnTim)) {
 			String pos = txtTim.getText();
 			if(pos != null && pos.trim().length()>0) {
-<<<<<<< HEAD
 				List<BangDia> list = bangDiaDao.findBangDia(pos);
-=======
-				List<BangDia> list = FrmMain.bangDiaDao.findBangDia(pos);
->>>>>>> 530a450164c67f72a14e903d974c06ac8d0b9522
 				tableModelBD.setRowCount(0);
 				for(BangDia d : list) {
 					tableModelBD.addRow(new Object[] {d.getMaBD(), d.getTenBD(), d.getTheLoai(), d.getTinhTrang(), d.getSoLuong(), d.getSoNgayMuon(), d.getDonGia(), d.getHangSX(), d.getGhiChu()});
 				}
-				
+
 			} else {
 				tableModelBD.setRowCount(0);
 			}
@@ -417,67 +316,18 @@ public class FrmBangDia extends JFrame implements ActionListener, MouseListener 
 			String hangSXCapNhat = txtHangSX.getText();
 			String ghiChuCapNhat = txtGhiChu.getText();
 			BangDia bdCapNhat = new BangDia(maCapNhat, tenCapNhat, theLoaiCapNhat, tinhTrangCapNhat, soLuongCapNhat, soNgayMuonCapNhat, donGiaCapNhat, hangSXCapNhat, ghiChuCapNhat);
-			
-<<<<<<< HEAD
+
 			bangDiaDao.updateBangDia(bdCapNhat);
 			tableModelBD.setRowCount(0);
 			try {
 				DocDuLieuVaoTableBangDia();
 			} catch (RemoteException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-=======
-			FrmMain.bangDiaDao.updateBangDia(bdCapNhat);
-			tableModelBD.setRowCount(0);
-			DocDuLieuVaoTableBangDia();
->>>>>>> 530a450164c67f72a14e903d974c06ac8d0b9522
 		}
 	}
 
-	private BangDia revertFromTextField() {
-		int MaBD = Integer.parseInt(txtMa.getText());
-		String TenBD = txtTen.getText().trim();
-		String TheLoai	= txtTheLoai.getText().trim();
-		String tinhTrang = txtTinhTrang.getText().trim();
-		int Soluong = Integer.parseInt(txtSoLuong.getText());
-		int SoNM = Integer.parseInt(txtSoNgayMuon.getText());
-		double DonGia = Double.parseDouble(txtDonGia.getText());
-		String hangSX = txtHangSX.getText().trim();
-		String GhiChu = txtGhiChu.getText().trim();
-		return new BangDia(MaBD, TenBD, TheLoai, tinhTrang, Soluong, SoNM, DonGia, hangSX, GhiChu);
-	}
-	//	private void LayDuLieuTuSQLmodelBD()  {
-	//		// TODO Auto-generated method stub
-	//		//		for(int i=0; i<listBD.getSize(); i++) {
-	//		//			BangDia bd = listBD.getEle(i);
-	//		//			tableModelBD.addRow(new Object[] {
-	//		//					bd.getMaBD(), bd.getTenBD(), bd.getTheLoai(),
-	//		//					bd.getTinhTrang(), bd.getSoLuong(), bd.getSoNgayMuon(),
-	//		//					bd.getDonGia(), bd.getHangSX(), bd.getGhiChu()
-	//		//			});
-	//		//		}
-	//		//int i = 0;
-	//		
-	//		ArrayList<BangDia> list = new ArrayList<>();
-	//		try {
-	//			list = Database.getAllFromSQL();
-	//		} catch (SQLException e) {
-	//			// TODO Auto-generated catch block
-	//			e.printStackTrace();
-	//		}
-	//		XoaHetDuLieuTableModel(tableModelBD);
-	//		for(BangDia bd : list) {
-	//			tableModelBD.addRow(new Object[] {
-	//					//i++,  // lĂ  sá»‘ thá»© tá»± cá»§a table
-	//					bd.getMaBD(), bd.getTenBD(), bd.getTheLoai(),
-	//					bd.getTinhTrang(), bd.getSoLuong(), bd.getSoNgayMuon(),
-	//					bd.getDonGia(), bd.getHangSX(), bd.getGhiChu()
-	//			});
-	//		}
-	//	}
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
 		int row = tableBD.getSelectedRow();
 		txtMa.setText(tableModelBD.getValueAt(row, 0).toString());
 		txtTen.setText(tableModelBD.getValueAt(row, 1).toString());
@@ -511,7 +361,6 @@ public class FrmBangDia extends JFrame implements ActionListener, MouseListener 
 	}
 
 	public void DocDuLieuVaoTableBangDia() throws RemoteException {
-//		BangDiaDao bangDiaDao = new BangDiaDao(FrmMain.factory);
 		List<BangDia> list = bangDiaDao.getAllBangDia();
 
 		for(BangDia bd : list) {

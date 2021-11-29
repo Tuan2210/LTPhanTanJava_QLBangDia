@@ -10,7 +10,6 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
 
 import javax.persistence.EntityManagerFactory;
@@ -40,33 +39,32 @@ public class FrmMain extends JFrame implements ActionListener, Remote{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-		JLabel lblTitle ;
-		JButton btnQLNV, btnQLKH, btnQLPDK, btnQLBD,btnThoat,btnBaoCao, btnYeuThich, btnHetHan;
-		
+	JLabel lblTitle ;
+	JButton btnQLNV, btnQLKH, btnQLPDK, btnQLBD,btnThoat,btnBaoCao, btnYeuThich, btnHetHan;
+
 	public static EntityManagerFactory factory = Persistence.createEntityManagerFactory("QLBangDia");
-//	public static BangDiaServices bangDiaDao = new BangDiaDao(factory); 
-//	public static NhanVienServices nhanVienDao = new NhanVienDao(factory);
-//	public static KhachHangServices khachHangDao = new KhachHangDao(factory);
-//	public static PhieuThueServices phieuThueDao = new PhieuThueDao(factory);
-//	public static ThongKeServices thongKeDao = new ThongKeDao(factory);
-		
+	//	public static BangDiaServices bangDiaDao = new BangDiaDao(factory); 
+	//	public static NhanVienServices nhanVienDao = new NhanVienDao(factory);
+	//	public static KhachHangServices khachHangDao = new KhachHangDao(factory);
+	//	public static PhieuThueServices phieuThueDao = new PhieuThueDao(factory);
+	//	public static ThongKeServices thongKeDao = new ThongKeDao(factory);
+
 	public FrmMain() {
-		// TODO Auto-generated constructor stub
 		setTitle("CHƯƠNG TRÌNH QUẢN LÝ BĂNG ĐĨA");
 		setSize(500,500);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		
+
 		addWindowListener(new java.awt.event.WindowAdapter() {
-		    @Override
-		    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-		    	factory.close();
-		    }
+			@Override
+			public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+				factory.close();
+			}
 		});
-		
+
 		buildUI();
-		
+
 	}
 	private void buildUI() {
 		JPanel pNorth = new JPanel();
@@ -78,13 +76,13 @@ public class FrmMain extends JFrame implements ActionListener, Remote{
 		lblTitle.setFont(fpNorth);
 		pNorth.setBackground(Color.CYAN);
 		add(pNorth, BorderLayout.NORTH);
-		
+
 		JPanel pCen = new JPanel(); 
 		pCen.setBackground(Color.WHITE);
 		pCen.setBorder(BorderFactory.createTitledBorder(" "));
 		Box b , b1,b2, b3,b4 ,b5, b6, b7, b8;
 		b = Box.createVerticalBox();
-		
+
 		b.add(Box.createVerticalStrut(10));
 		b.add(b1 = Box.createHorizontalBox());
 		b.add(Box.createVerticalStrut(10));
@@ -104,38 +102,38 @@ public class FrmMain extends JFrame implements ActionListener, Remote{
 		b.add(Box.createVerticalStrut(10));
 		pCen.add(b);
 		add(pCen, BorderLayout.CENTER);
-		
+
 		b1.add(btnQLNV = new JButton("Quản lý nhân viên"));
 		b1.add(Box.createVerticalStrut(25));
-		
+
 		b2.add(btnQLKH = new JButton("Quản lý khách hàng"));
 		b2.add(Box.createVerticalStrut(25));
-	
+
 		b3.add(btnQLBD = new JButton("Quản lý băng đĩa"));
 		b3.add(Box.createVerticalStrut(25));
-		
+
 		b4.add(btnQLPDK = new JButton("Quản lý phiếu đăng ký thuê"));
 		b4.add(Box.createVerticalStrut(25));
 		btnQLPDK.setSize(150, 20);
 		b5.add(btnBaoCao = new JButton("Thống kê Tổng hợp Băng Đĩa hỏng"));
 		b5.add(Box.createVerticalStrut(25));
-		
+
 		b6.add(btnYeuThich = new JButton("Tổng hợp Băng Đĩa được yêu thích"));
 		b6.add(Box.createVerticalStrut(25));
-		
+
 		b7.add(btnHetHan = new JButton("Thống kê Phiếu Thuê hết hạn"));
 		b7.add(Box.createVerticalStrut(25));
-		
+
 		b8.add(btnThoat = new JButton("Thoát chương trình"));
 		b8.add(Box.createVerticalStrut(25));
-		
+
 		btnQLBD.setPreferredSize(btnBaoCao.getPreferredSize());
 		btnQLKH.setPreferredSize(btnBaoCao.getPreferredSize());
 		btnQLNV.setPreferredSize(btnBaoCao.getPreferredSize());
 		btnThoat.setPreferredSize(btnBaoCao.getPreferredSize());
 		btnQLPDK.setPreferredSize(btnBaoCao.getPreferredSize());
 		btnHetHan.setPreferredSize(btnBaoCao.getPreferredSize());
-		
+
 		btnQLBD.addActionListener(this);
 		btnQLKH.addActionListener(this);
 		btnQLNV.addActionListener(this);
@@ -147,22 +145,19 @@ public class FrmMain extends JFrame implements ActionListener, Remote{
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		Object o = e.getSource();
 		if (o.equals(btnQLNV)) {
-					try {
-						new FrmNhanVien().setVisible(true);
-					} catch (SQLException | RemoteException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					};
-			
+			try {
+				new FrmNhanVien().setVisible(true);
+			} catch (SQLException | RemoteException e1) {
+				e1.printStackTrace();
+			};
+
 		}
 		if (o.equals(btnQLPDK)) {
 			try {
 				new FrmPhieuThue().setVisible(true);
 			} catch (RemoteException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		}
@@ -170,7 +165,6 @@ public class FrmMain extends JFrame implements ActionListener, Remote{
 			try {
 				new FrmBangDia().setVisible(true);
 			} catch (Exception e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		}
@@ -178,25 +172,22 @@ public class FrmMain extends JFrame implements ActionListener, Remote{
 			try {
 				new FrmKhachHang().setVisible(true);
 			} catch (SQLException | RemoteException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		}
 		if (o.equals(btnBaoCao)) {
-		
-				try {
-					new FrmThongKeDiaHong().setVisible(true);
-				} catch (RemoteException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			
+
+			try {
+				new FrmThongKeDiaHong().setVisible(true);
+			} catch (RemoteException e1) {
+				e1.printStackTrace();
+			}
+
 		}
 		if(o.equals(btnYeuThich)) {
 			try {
 				new FrmThongKeDiaYeuThich().setVisible(true);
 			} catch (RemoteException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		}
@@ -204,7 +195,6 @@ public class FrmMain extends JFrame implements ActionListener, Remote{
 			try {
 				new FrmThongKeHetHan().setVisible(true);
 			} catch (RemoteException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		}
@@ -223,18 +213,16 @@ public class FrmMain extends JFrame implements ActionListener, Remote{
 			PhieuThueServices ptDao = new PhieuThueDao(factory);
 			ThongKeServices tkDao = new ThongKeDao(factory);
 			LocateRegistry.createRegistry(6543);
-            Registry reg = LocateRegistry.getRegistry(6543);
-            reg.bind("rmi://localhost:6543/CalServiceTest", bdDao);
-            reg.bind("rmi://localhost:6543/CalServiceTest1", khDao);
-            reg.bind("rmi://localhost:6543/CalServiceTest2", nvDao);
-            reg.bind("rmi://localhost:6543/CalServiceTest3", ptDao);
-            reg.bind("rmi://localhost:6543/CalServiceTest4", tkDao);
-            
-            
+			Registry reg = LocateRegistry.getRegistry(6543);
+			reg.bind("rmi://localhost:6543/CalServiceTest", bdDao);
+			reg.bind("rmi://localhost:6543/CalServiceTest1", khDao);
+			reg.bind("rmi://localhost:6543/CalServiceTest2", nvDao);
+			reg.bind("rmi://localhost:6543/CalServiceTest3", ptDao);
+			reg.bind("rmi://localhost:6543/CalServiceTest4", tkDao);
 
-            System.out.println("Server ready");
-            
-            new FrmMain().setVisible(true);
+			System.out.println("Server ready");
+
+			new FrmMain().setVisible(true);
 		} catch (RemoteException | AlreadyBoundException e) {
 			e.printStackTrace();
 		}	

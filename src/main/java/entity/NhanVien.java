@@ -18,7 +18,7 @@ public class NhanVien implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int maNV;
@@ -27,7 +27,7 @@ public class NhanVien implements Serializable {
 	private String moTa;
 	@OneToMany(mappedBy = "nhanVien", cascade = CascadeType.ALL)
 	private Set<PhieuThue> phieuThue = new HashSet<>();
-	
+
 	public NhanVien(String tenNV, String dienThoai, String moTa) {
 		super();
 		this.tenNV = tenNV;
@@ -65,8 +65,4 @@ public class NhanVien implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 530a450164c67f72a14e903d974c06ac8d0b9522

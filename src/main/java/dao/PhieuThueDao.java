@@ -1,25 +1,16 @@
 package dao;
 
-<<<<<<< HEAD
 import java.io.Serializable;
 import java.rmi.RemoteException;
-=======
->>>>>>> 530a450164c67f72a14e903d974c06ac8d0b9522
 import java.util.List;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 
-<<<<<<< HEAD
-=======
-import entity.KhachHang;
->>>>>>> 530a450164c67f72a14e903d974c06ac8d0b9522
-import entity.NhanVien;
 import entity.PhieuThue;
 import service.PhieuThueServices;
 
 public class PhieuThueDao extends AbstractDao implements PhieuThueServices, Serializable {
-
 	/**
 	 * 
 	 */
@@ -41,6 +32,7 @@ public class PhieuThueDao extends AbstractDao implements PhieuThueServices, Seri
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<PhieuThue> getAllPhieuThue() {
 		em.getTransaction().begin();
@@ -67,6 +59,7 @@ public class PhieuThueDao extends AbstractDao implements PhieuThueServices, Seri
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<PhieuThue> findPhieuThue(int id) {
 		em.getTransaction().begin();
@@ -74,11 +67,11 @@ public class PhieuThueDao extends AbstractDao implements PhieuThueServices, Seri
 		Query query = em.createNativeQuery(statement, PhieuThue.class);
 		List<PhieuThue> l = query.getResultList();
 		em.getTransaction().commit();
-		
+
 		return l;
-<<<<<<< HEAD
 	}
-	
+
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<String> getTenBangDia() {
 		em.getTransaction().begin();
@@ -88,10 +81,11 @@ public class PhieuThueDao extends AbstractDao implements PhieuThueServices, Seri
 		Query query = em.createNativeQuery(statement);
 		List<String> l = query.getResultList();
 		em.getTransaction().commit();
-		
+
 		return l;
 	}
-	
+
+	@SuppressWarnings("unchecked")
 	@Override 
 	public List<PhieuThue> getPhieuThueByCMND(String cmnd) {
 		em.getTransaction().begin();
@@ -99,10 +93,11 @@ public class PhieuThueDao extends AbstractDao implements PhieuThueServices, Seri
 		Query query = em.createNativeQuery(statement, PhieuThue.class);
 		List<PhieuThue> l = query.getResultList();
 		em.getTransaction().commit();
-		
+
 		return l;
 	}
-	
+
+	@SuppressWarnings("unchecked")
 	@Override 
 	public List<String> getTenBangDiaByCMND(String cmnd) {
 		em.getTransaction().begin();
@@ -112,10 +107,8 @@ public class PhieuThueDao extends AbstractDao implements PhieuThueServices, Seri
 		Query query = em.createNativeQuery(statement);
 		List<String> l = query.getResultList();
 		em.getTransaction().commit();
-		
+
 		return l;
-=======
->>>>>>> 530a450164c67f72a14e903d974c06ac8d0b9522
 	}
 
 }

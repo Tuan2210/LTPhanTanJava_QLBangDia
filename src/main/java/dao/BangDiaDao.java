@@ -8,11 +8,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 
 import entity.BangDia;
-import entity.NhanVien;
 import service.BangDiaServices;
 
 public class BangDiaDao extends AbstractDao implements BangDiaServices, Serializable {
-	
 	/**
 	 * 
 	 */
@@ -34,18 +32,19 @@ public class BangDiaDao extends AbstractDao implements BangDiaServices, Serializ
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<BangDia> getAllBangDia() {
-		
+
 		em.getTransaction().begin();
 		String statement = "SELECT * FROM BangDia";
 		Query query = em.createNativeQuery(statement, BangDia.class);
 		List<BangDia> list = query.getResultList();
 		em.getTransaction().commit();
-		
+
 		return list;
 	}
-	
+
 	@Override 
 	public void removeBangDia(int id) {
 		try {
@@ -58,7 +57,7 @@ public class BangDiaDao extends AbstractDao implements BangDiaServices, Serializ
 			em.getTransaction().rollback();
 		}
 	}
-	
+
 	@Override
 	public void updateBangDia(BangDia b) {
 		try {
@@ -70,32 +69,19 @@ public class BangDiaDao extends AbstractDao implements BangDiaServices, Serializ
 			em.getTransaction().rollback();
 		}
 	}
-	
+
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<BangDia> findBangDia(String ten) {
 		em.getTransaction().begin();
-<<<<<<< HEAD
 		String statement = "SELECT * FROM BangDia WHERE tenBD LIKE " +  "'%" + ten + "%'"  ;
 		Query query = em.createNativeQuery(statement, BangDia.class);
 		List<BangDia> b = query.getResultList();
 		em.getTransaction().commit();
-		
-		return b;
-	}
-	
-	@Override
-=======
 
-		String statement = "SELECT * FROM BangDia WHERE tenBD LIKE " +  "'%" + ten + "%'"  ;
-//		String statement1 = "SELECT * FROM BangDia WHERE tenBD = " +  "'" + ten + "'"  ;
-//		String statement = "SELECT * FROM BangDia WHERE tenBD LIKE " +  "'%" + ten + "%'"  ;
-//		String statement = "SELECT * FROM BangDia WHERE tenBD = " +  "'" + ten + "'"  ;
-		Query query = em.createNativeQuery(statement, BangDia.class);
-		List<BangDia> b = query.getResultList();
-		em.getTransaction().commit();
 		return b;
 	}
->>>>>>> 530a450164c67f72a14e903d974c06ac8d0b9522
+
 	public BangDia getBangDiaByTen(String ten) {
 		em.getTransaction().begin();
 		String statement = "SELECT * FROM BangDia WHERE tenBD LIKE " +  "'%" + ten + "%'"  ;
@@ -104,10 +90,6 @@ public class BangDiaDao extends AbstractDao implements BangDiaServices, Serializ
 		em.getTransaction().commit();
 		return bd;
 	}
-<<<<<<< HEAD
-}
-=======
-
 }
 
->>>>>>> 530a450164c67f72a14e903d974c06ac8d0b9522
+
