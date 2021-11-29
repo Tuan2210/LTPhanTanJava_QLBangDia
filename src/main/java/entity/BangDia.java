@@ -100,6 +100,12 @@ public class BangDia implements Serializable{
 		this.ghiChu = ghiChu;
 	}
 	
+	public Set<PhieuThue> getGroups() {
+		return groups;
+	}
+	public void setGroups(Set<PhieuThue> groups) {
+		this.groups = groups;
+	}
 	public BangDia(int maBD, String tenBD, String theLoai, String tinhTrang, int soLuong, int soNgayMuon,
 			double donGia, String hangSX, String ghiChu) {
 		super();

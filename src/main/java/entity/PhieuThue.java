@@ -1,5 +1,6 @@
 package entity;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,7 +12,11 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class PhieuThue {
+public class PhieuThue implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1103298614209441160L;
 	@Id
 	private int soPhieu;
 	@ManyToOne
@@ -20,7 +25,7 @@ public class PhieuThue {
 	private String ngayThue;
 	@ManyToMany
 	@JoinTable(name = "ChiTietPhieuThue", joinColumns = @JoinColumn(name = "soPhieu"), inverseJoinColumns = @JoinColumn(name = "maBD"))
-	private Set<BangDia> bangDia = new HashSet<>();
+	private Set<BangDia> bangDia = new HashSet<BangDia>();
 	private int soluong;
 	private int soNgayMuon;
 	private double donGia;

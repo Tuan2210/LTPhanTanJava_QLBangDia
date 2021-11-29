@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.rmi.RemoteException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -33,7 +34,11 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
+import dao.BangDiaDao;
+import dao.KhachHangDao;
+import dao.Regex;
 import entity.KhachHang;
+import service.KhachHangServices;
 //import quanLyBangDia.FrmBangDia;
 
 
@@ -57,6 +62,7 @@ public class FrmKhachHang extends JFrame implements ActionListener, MouseListene
 //	private DanhSachKhachHang listKH;
 //	private ArrayList<KhachHang> listData;
 	JSplitPane split;
+	KhachHangDao khachHangDao = new KhachHangDao(FrmMain.factory);
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -70,7 +76,7 @@ public class FrmKhachHang extends JFrame implements ActionListener, MouseListene
 		});
 	}
 
-	public FrmKhachHang() throws SQLException {
+	public FrmKhachHang() throws SQLException, RemoteException {
 		setTitle("QUẢN LÝ KHÁCH HÀNG");
 		setSize(900,600);
 		setResizable(false);
@@ -201,43 +207,82 @@ public class FrmKhachHang extends JFrame implements ActionListener, MouseListene
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		Object o = e.getSource();
-		String hoten = txtHoTen.getText();
-		String gioitinh = txtGioiTinh.getText();
-		String dienthoai = txtDienThoai.getText();
-		String diachi = txtDiaChi.getText();
-		int socmnd = Integer.parseInt(txtSoCMND.getText());
-		KhachHang kh = new KhachHang(hoten, gioitinh, dienthoai, diachi, socmnd);
-		
+
 		if(o.equals(btnThem)) {
-			FrmMain.khachHangDao.add(kh);
-			
-			tableModel.addRow(new Object[] {
-					kh.getHoTen(), kh.getGioiTinh(), kh.getDienThoai(), kh.getDiaChi(), kh.getSoCMND()
-			});
+			Regex r = new Regex();
+			if(r.regexCMND(txtSoCMND) && r.regexSDTTxt(txtDienThoai)) {
+				String hoten = txtHoTen.getText();
+				String gioitinh = txtGioiTinh.getText();
+				String dienthoai = txtDienThoai.getText();
+				String diachi = txtDiaChi.getText();
+				String socmnd = txtSoCMND.getText();
+
+				KhachHang kh = new KhachHang(hoten, gioitinh, dienthoai, diachi, socmnd);
+				khachHangDao.add(kh);
+				
+				tableModel.addRow(new Object[] {
+						kh.getHoTen(), kh.getGioiTinh(), kh.getDienThoai(), kh.getDiaChi(), kh.getSoCMND()
+				});
+			}	
 		}
 		if(o.equals(btnXoa)) {
 			if (table.getSelectedRow() != -1) {
 				int index = table.getSelectedRow();
+				String socmnd = txtSoCMND.getText();
 				int del = JOptionPane.showConfirmDialog(null, "Bạn muốn xóa?", "THÔNG BÁO", JOptionPane.YES_NO_OPTION);
 				if(del==JOptionPane.YES_OPTION) {
-					
+					khachHangDao.removeKhachHang(socmnd);
+					tableModel.setRowCount(0);
+					try {
+						DocDuLieuVaoTableKhachHang();
+					} catch (RemoteException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
-			
 			}
 		}
 		if(o.equals(btnXoaRong)) {
 			xoaRong();
 		}
 		if(o.equals(btnLuu)) {		
-
+			
+		}
+		if(o.equals(btnSua)) {
+			Regex r = new Regex();
+			if(r.regexCMND(txtSoCMND) && r.regexSDTTxt(txtDienThoai)) {
+				String hoten = txtHoTen.getText();
+				String gioitinh = txtGioiTinh.getText();
+				String dienthoai = txtDienThoai.getText();
+				String diachi = txtDiaChi.getText();
+				String socmnd = txtSoCMND.getText();
+				KhachHang khUpdate = new KhachHang(hoten, gioitinh, dienthoai, diachi, socmnd);
+				
+				khachHangDao.updateKhachHang(khUpdate);
+				tableModel.setRowCount(0);
+				
+				try {
+					DocDuLieuVaoTableKhachHang();
+				} catch (RemoteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
 		}
 		if(o.equals(btnTim)) {
-			String pos=txtNhap.getText();
-			if(pos != null && pos.trim().length()>0) {
-
-			}else {
-				XoaHetDuLieuTableModel(tableModel);
-//				LayDuLieuTuSQLChoModel();
+			if(txtNhap.getText() == null) {
+				tableModel.setRowCount(0);
+			}
+			else if (txtNhap.getText() != null) {
+				String pos = txtNhap.getText();
+				tableModel.setRowCount(0);
+				List<KhachHang> listKH = khachHangDao.findKhachHang(pos);
+				
+				for(KhachHang h : listKH) {
+					tableModel.addRow(new Object[] {
+							h.getHoTen(), h.getGioiTinh(), h.getDienThoai(), h.getDiaChi(), h.getSoCMND()
+					});
+				}
 			}
 		}
 	}
@@ -259,13 +304,12 @@ public class FrmKhachHang extends JFrame implements ActionListener, MouseListene
 		String Gioitinh = txtGioiTinh.getText().trim();
 		String DienThoai = txtDienThoai.getText().trim();
 		String diachi = txtDiaChi.getText().trim();
-		int soCMND = Integer.parseInt(txtSoCMND.getText());
+		String soCMND = txtSoCMND.getText();
 		
 		return new KhachHang(hoten, Gioitinh, DienThoai, diachi, soCMND);
 	}
 	
 	public void mouseClicked(MouseEvent e) {
-		//		// TODO Auto-generated method stub
 		int row = table.getSelectedRow();
 		txtHoTen.setText(table.getValueAt(row, 0).toString());
 		txtGioiTinh.setText(table.getValueAt(row, 1).toString());
@@ -294,8 +338,8 @@ public class FrmKhachHang extends JFrame implements ActionListener, MouseListene
 
 	}
 	
-	public void DocDuLieuVaoTableKhachHang() {
-		List<KhachHang> list = FrmMain.khachHangDao.getAllKhachHang();
+	public void DocDuLieuVaoTableKhachHang() throws RemoteException{
+		List<KhachHang> list = khachHangDao.getAllKhachHang();
 		
 		for(KhachHang h : list) {
 			tableModel.addRow(new Object[] {
