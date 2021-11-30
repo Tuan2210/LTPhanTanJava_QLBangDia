@@ -5,59 +5,30 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.rmi.RemoteException;
-<<<<<<< HEAD
-<<<<<<< HEAD
-import java.sql.Connection;
-=======
->>>>>>> 8ab78b7df95e5ab02eed23b0958127c208b42927
-=======
-import java.sql.Connection;
->>>>>>> parent of 8ab78b7 (fix all code sever)
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
-import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> parent of 8ab78b7 (fix all code sever)
-import dao.BangDiaDao;
 import dao.KhachHangDao;
 import dao.Regex;
 import entity.KhachHang;
-import service.KhachHangServices;
-//import quanLyBangDia.FrmBangDia;
-<<<<<<< HEAD
-=======
-import dao.KhachHangDao;
-import entity.KhachHang;
->>>>>>> 8ab78b7df95e5ab02eed23b0958127c208b42927
-=======
->>>>>>> parent of 8ab78b7 (fix all code sever)
 
 
 public class FrmKhachHang extends JFrame implements ActionListener, MouseListener{
@@ -76,20 +47,12 @@ public class FrmKhachHang extends JFrame implements ActionListener, MouseListene
 	private JButton btnTim;
 	private JButton btnXoaRong;
 	private JTable table;
+	@SuppressWarnings("unused")
 	private DefaultTableModel tableModel,tableModelBD;
-//	private DanhSachKhachHang listKH;
-//	private ArrayList<KhachHang> listData;
+
 	JSplitPane split;
 	KhachHangDao khachHangDao = new KhachHangDao(FrmMain.factory);
-<<<<<<< HEAD
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> 8ab78b7df95e5ab02eed23b0958127c208b42927
-=======
-	
->>>>>>> parent of 8ab78b7 (fix all code sever)
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -109,6 +72,7 @@ public class FrmKhachHang extends JFrame implements ActionListener, MouseListene
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
+		@SuppressWarnings("unused")
 		JLabel lblTitle, lblHoTen, lblGioiTinh, lblDienThoai, lblDiaChi, lblSoCMND, lblNhap;
 		//North
 		JPanel pNorth = new JPanel();
@@ -198,11 +162,6 @@ public class FrmKhachHang extends JFrame implements ActionListener, MouseListene
 		split.setRightComponent(pRight);
 		add(split,BorderLayout.SOUTH);
 
-//		listKH = new DanhSachKhachHang();
-//		Database db=new Database();
-//		Database.getInstance().connect();
-//		listData = new Database().getAllFromSQL();
-
 		btnThem.addActionListener(this);
 		btnXoa.addActionListener(this);
 		btnSua.addActionListener(this);
@@ -213,29 +172,17 @@ public class FrmKhachHang extends JFrame implements ActionListener, MouseListene
 
 	}
 	private void xoaRong() {
-		// TODO Auto-generated method stub
 		txtHoTen.setText("");
 		txtDienThoai.setText("");
 		txtDiaChi.setText("");
 		txtSoCMND.setText("");;
 		txtHoTen.requestFocus();
 	}
-//	private void LayDuLieuTuSQLChoModel() {
-//		for(KhachHang kh : listData) {
-//			tableModel.addRow(new Object[] {kh.getHoTen(), kh.getGioiTinh(), kh.getDienThoai(),kh.getDiaChi(), kh.getSoCMND()});
-//		}
-//	}
-	private void XoaHetDuLieuTableModel(DefaultTableModel tableModelBD2) {
-		DefaultTableModel dtm = (DefaultTableModel) table.getModel();
-		dtm.getDataVector().removeAllElements();
-	}
-	
+
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		Object o = e.getSource();
 
 		if(o.equals(btnThem)) {
-<<<<<<< HEAD
 			Regex r = new Regex();
 			if(r.regexCMND(txtSoCMND) && r.regexSDTTxt(txtDienThoai)) {
 				String hoten = txtHoTen.getText();
@@ -250,76 +197,29 @@ public class FrmKhachHang extends JFrame implements ActionListener, MouseListene
 				tableModel.addRow(new Object[] {
 						kh.getHoTen(), kh.getGioiTinh(), kh.getDienThoai(), kh.getDiaChi(), kh.getSoCMND()
 				});
-			}	
+			}
 		}
 		if(o.equals(btnXoa)) {
 			if (table.getSelectedRow() != -1) {
-				int index = table.getSelectedRow();
-=======
-			String hoten = txtHoTen.getText();
-			String gioitinh = txtGioiTinh.getText();
-			String dienthoai = txtDienThoai.getText();
-			String diachi = txtDiaChi.getText();
-			String socmnd = txtSoCMND.getText();
-			KhachHang kh = new KhachHang(hoten, gioitinh, dienthoai, diachi, socmnd);
-<<<<<<< HEAD
-			khachHangDao.add(kh);
-=======
-			FrmMain.khachHangDao.add(kh);
->>>>>>> 530a450164c67f72a14e903d974c06ac8d0b9522
-			
-			tableModel.addRow(new Object[] {
-					kh.getHoTen(), kh.getGioiTinh(), kh.getDienThoai(), kh.getDiaChi(), kh.getSoCMND()
-			});
-		}
-		if(o.equals(btnXoa)) {
-			if (table.getSelectedRow() != -1) {
-<<<<<<< HEAD
->>>>>>> 8ab78b7df95e5ab02eed23b0958127c208b42927
-=======
-				int index = table.getSelectedRow();
->>>>>>> parent of 8ab78b7 (fix all code sever)
 				String socmnd = txtSoCMND.getText();
 				int del = JOptionPane.showConfirmDialog(null, "Bạn muốn xóa?", "THÔNG BÁO", JOptionPane.YES_NO_OPTION);
 				if(del==JOptionPane.YES_OPTION) {
-<<<<<<< HEAD
 					khachHangDao.removeKhachHang(socmnd);
 					tableModel.setRowCount(0);
 					try {
 						DocDuLieuVaoTableKhachHang();
 					} catch (RemoteException e1) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				}
-=======
-=======
-						// TODO Auto-generated catch block
->>>>>>> parent of 8ab78b7 (fix all code sever)
-						e1.printStackTrace();
-					}
-=======
-					FrmMain.khachHangDao.removeKhachHang(socmnd);
-					tableModel.setRowCount(0);
-					DocDuLieuVaoTableKhachHang();
->>>>>>> 530a450164c67f72a14e903d974c06ac8d0b9522
-				}
-<<<<<<< HEAD
 
->>>>>>> 8ab78b7df95e5ab02eed23b0958127c208b42927
-=======
-			
->>>>>>> parent of 8ab78b7 (fix all code sever)
 			}
 		}
 		if(o.equals(btnXoaRong)) {
 			xoaRong();
 		}
 		if(o.equals(btnLuu)) {		
-			
-<<<<<<< HEAD
+
 		}
 		if(o.equals(btnSua)) {
 			Regex r = new Regex();
@@ -337,35 +237,9 @@ public class FrmKhachHang extends JFrame implements ActionListener, MouseListene
 				try {
 					DocDuLieuVaoTableKhachHang();
 				} catch (RemoteException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
-=======
->>>>>>> parent of 8ab78b7 (fix all code sever)
-		}
-		if(o.equals(btnSua)) {
-			String hoten = txtHoTen.getText();
-			String gioitinh = txtGioiTinh.getText();
-			String dienthoai = txtDienThoai.getText();
-			String diachi = txtDiaChi.getText();
-			String socmnd = txtSoCMND.getText();
-			KhachHang khUpdate = new KhachHang(hoten, gioitinh, dienthoai, diachi, socmnd);
-			
-<<<<<<< HEAD
-			khachHangDao.updateKhachHang(khUpdate);
-			tableModel.setRowCount(0);
-			try {
-				DocDuLieuVaoTableKhachHang();
-			} catch (RemoteException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-=======
-			FrmMain.khachHangDao.updateKhachHang(khUpdate);
-			tableModel.setRowCount(0);
-			DocDuLieuVaoTableKhachHang();
->>>>>>> 530a450164c67f72a14e903d974c06ac8d0b9522
 		}
 		if(o.equals(btnTim)) {
 			if(txtNhap.getText() == null) {
@@ -374,19 +248,7 @@ public class FrmKhachHang extends JFrame implements ActionListener, MouseListene
 			else if (txtNhap.getText() != null) {
 				String pos = txtNhap.getText();
 				tableModel.setRowCount(0);
-<<<<<<< HEAD
 				List<KhachHang> listKH = khachHangDao.findKhachHang(pos);
-<<<<<<< HEAD
-<<<<<<< HEAD
-				
-=======
->>>>>>> 8ab78b7df95e5ab02eed23b0958127c208b42927
-=======
-=======
-				List<KhachHang> listKH = FrmMain.khachHangDao.findKhachHang(pos);
->>>>>>> 530a450164c67f72a14e903d974c06ac8d0b9522
-				
->>>>>>> parent of 8ab78b7 (fix all code sever)
 				for(KhachHang h : listKH) {
 					tableModel.addRow(new Object[] {
 							h.getHoTen(), h.getGioiTinh(), h.getDienThoai(), h.getDiaChi(), h.getSoCMND()
@@ -396,37 +258,6 @@ public class FrmKhachHang extends JFrame implements ActionListener, MouseListene
 		}
 	}
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> parent of 8ab78b7 (fix all code sever)
-	
-//	private void updateTablemodel() {
-//		// TODO Auto-generated method stub
-//		ArrayList<KhachHang> list = new ArrayList<>();
-//		list = listKH.getListKH();
-//		for (KhachHang kh : list) {
-//			tableModel.addRow(new Object[] {
-//					kh.getDiaChi(),kh.getDienThoai(),kh.getGioiTinh(),kh.getHoTen(),kh.getSoCMND()
-//			});
-//		}
-//	}
-	private KhachHang revertFromTextfield() {
-		// TODO Auto-generated method stub
-		String hoten = txtHoTen.getText().trim();
-		String Gioitinh = txtGioiTinh.getText().trim();
-		String DienThoai = txtDienThoai.getText().trim();
-		String diachi = txtDiaChi.getText().trim();
-		String soCMND = txtSoCMND.getText();
-		
-		return new KhachHang(hoten, Gioitinh, DienThoai, diachi, soCMND);
-	}
-	
-<<<<<<< HEAD
-=======
->>>>>>> 8ab78b7df95e5ab02eed23b0958127c208b42927
-=======
->>>>>>> parent of 8ab78b7 (fix all code sever)
 	public void mouseClicked(MouseEvent e) {
 		int row = table.getSelectedRow();
 		txtHoTen.setText(table.getValueAt(row, 0).toString());
@@ -455,24 +286,10 @@ public class FrmKhachHang extends JFrame implements ActionListener, MouseListene
 		// TODO Auto-generated method stub
 
 	}
-<<<<<<< HEAD
-<<<<<<< HEAD
-	
-	public void DocDuLieuVaoTableKhachHang() throws RemoteException{
-		List<KhachHang> list = khachHangDao.getAllKhachHang();
-		
-=======
 
 	public void DocDuLieuVaoTableKhachHang() throws RemoteException{
 		List<KhachHang> list = khachHangDao.getAllKhachHang();
 
->>>>>>> 8ab78b7df95e5ab02eed23b0958127c208b42927
-=======
-	
-	public void DocDuLieuVaoTableKhachHang() throws RemoteException{
-		List<KhachHang> list = khachHangDao.getAllKhachHang();
-		
->>>>>>> parent of 8ab78b7 (fix all code sever)
 		for(KhachHang h : list) {
 			tableModel.addRow(new Object[] {
 					h.getHoTen(), h.getGioiTinh(), h.getDienThoai(), h.getDiaChi(), h.getSoCMND()
